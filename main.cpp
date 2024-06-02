@@ -38,7 +38,6 @@ void version(string a){
 
     cout<<"Versión "<<a<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
 }
-
 struct pedido{
     int codigo_item;//ID del plato
     int cantidad_item;// cantidad que deseas de ese pedido
@@ -46,18 +45,14 @@ struct pedido{
     float precio_item;//precio del plato
 
 }orden[20][10];//el pedido de un cliente
-
-
 struct datos_cliente{
     string nombre_cliente;//nombre del cliente
-    int codigo_orden;//codigo de orden del cliente
-    short codigo_cliente;//codigo del cliente
+    int codigo_cliente;//codigo del cliente
     float costo_total_items;//el monto de todo el pedido del cliente
     int numero_items_datos; //numero de pedidos que hizo la persona
 }datos_orden[10];//numero de cliente que hay en el proyecto (10)
-
-
 int main(){
+    srand(time(NULL));
     setlocale(LC_ALL, "spanish");
     version("b0.1");
     char opcion;//opcion del menu principal
@@ -68,7 +63,6 @@ int main(){
         menu();
         cin>>opcion;
         fflush(stdin);
-        system("pause");
         system("cls");
 
         switch(opcion){
@@ -76,9 +70,10 @@ int main(){
                 int  opc_orden;//opcion que desea
                 //menu_carta();
                 num_orden=0;
+                cout<<"Ingrese el nombre del cliente : ";
+                cin>>datos_orden[num_cliente].nombre_cliente;
+
                 do{
-                    cout<<"Ingrese el nombre del cliente : ";
-                    cin>>datos_orden[num_cliente].nombre_cliente;
                     cout<<"\n Inserte codigo de item (0 para terminar la orden): ";
                     fflush(stdin);
                     cin>>opc_orden;
@@ -137,8 +132,53 @@ int main(){
                             break;
                         }
                         case 206:{
-                            orden[num_orden][num_cliente].nombre_item="Chaufa de Mariscos";
+                            orden[num_orden][num_cliente].nombre_item="Aeropuerto";
                             orden[num_orden][num_cliente].precio_item=17.00;
+                            break;
+                        }
+                        case 207:{
+                            orden[num_orden][num_cliente].nombre_item="Lomo Saltado";
+                            orden[num_orden][num_cliente].precio_item=16.50;
+                            break;
+                        }
+                        case 208:{
+                            orden[num_orden][num_cliente].nombre_item="Tacu Tacu";
+                            orden[num_orden][num_cliente].precio_item=14.50;
+                            break;
+                        }
+                        case 209:{
+                            orden[num_orden][num_cliente].nombre_item="Locro con Cecina";
+                            orden[num_orden][num_cliente].precio_item=15.00;
+                            break;
+                        }
+                        case 210:{
+                            orden[num_orden][num_cliente].nombre_item="Tallarin Saltado";
+                            orden[num_orden][num_cliente].precio_item=18.00;
+                            break;
+                        }
+                        case 301:{
+                            orden[num_orden][num_cliente].nombre_item="Inca Kola 1L";
+                            orden[num_orden][num_cliente].precio_item=4.50;
+                            break;
+                        }
+                        case 302:{
+                            orden[num_orden][num_cliente].nombre_item="Inca Kola 2L";
+                            orden[num_orden][num_cliente].precio_item=6.50;
+                            break;
+                        }
+                        case 303:{
+                            orden[num_orden][num_cliente].nombre_item="Coca Cola 1L";
+                            orden[num_orden][num_cliente].precio_item=5.00;
+                            break;
+                        }
+                        case 304:{
+                            orden[num_orden][num_cliente].nombre_item="Coca Cola 2L";
+                            orden[num_orden][num_cliente].precio_item=7.00;
+                            break;
+                        }
+                        case 305:{
+                            orden[num_orden][num_cliente].nombre_item="Chicha Morada 2L";
+                            orden[num_orden][num_cliente].precio_item=8.00;
                             break;
                         }
                         default:{
@@ -189,8 +229,10 @@ int main(){
                         cout<<"                                                                                      Costo Total: "<<datos_orden[num_cliente].costo_total_items<<endl;
                     }
                 }while(opc_orden!=0);
-                num_cliente=num_cliente+1;
+
                 datos_orden[num_cliente].codigo_cliente = 10000+rand()% 89999;
+                cout<<"\n\nCODIGO GENERADO : "<< datos_orden[num_cliente].codigo_cliente<<endl;
+
                 num_cliente=num_cliente+1;
 
 
@@ -202,33 +244,45 @@ int main(){
             }
             case '2':{
                 cout<<"Opcion 2 elegida"<<endl;
+
+                break;
             }
             case '3':{
                 int codice;
-                int bscr;
+                int bscr , opc_buscar=0;
                 system("cls");
-                cout<<"Ingrese el codigo de la Orden que desee buscar : "<<endl;
+                cout<<"Ingrese el codigo de la Orden que desee buscar : ";
                 cin >> codice;
                 for(int i=0 ; i<num_cliente; i++){
                     if(codice==datos_orden[i].codigo_cliente){
-                        bscr=num_cliente;
+                        bscr=i;
+                        opc_buscar = 1;
                     }
                 }
-
-
-                num_cliente = 0;
-                cout<<"ID  	Nombre				Precio	   Cantidad     Costo"<<endl;
-                cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
-                for(int i=0; i<datos_orden[num_cliente].numero_items_datos; i++){
-                    datos_orden[num_cliente].costo_total_items += orden[i][num_cliente].precio_item * orden[i][num_cliente].cantidad_item;
-                    gotoxy(0, i+3);cout<<orden[i][num_cliente].codigo_item;
-                    cout<<"  \t"<<orden[i][num_cliente].nombre_item;
-                    gotoxy(40, i+3);cout<<"S/."<<orden[i][num_cliente].precio_item;
-                    gotoxy(50, i+3);cout<<" x"<<orden[i][num_cliente].cantidad_item;
-                    gotoxy(60, i+3);cout<<"\tS/."<<orden[i][num_cliente].precio_item * orden[i][num_cliente].cantidad_item<<"\n";
+                if(opc_buscar== 1){
+                    system("cls");
+                    cout<<"------------CODIGO DE CLIENTE ENCONTRADO-----------------------------------------------------------------------"<<endl;
+                    cout<<"Nombre Cliente : "<< datos_orden[bscr].nombre_cliente << endl;
+                    cout<<"Codigo : "<< datos_orden[bscr].codigo_cliente<<endl;
+                    cout<<"Numero de pedidos de la orden : "<<datos_orden[bscr].numero_items_datos<<endl;
+                    cout<<"Costo total : "<<datos_orden[bscr].costo_total_items<<endl;
+                    cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
+                    cout<<"ID  	Nombre				Precio	   Cantidad     Costo"<<endl;
+                    cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
+                    for(int i=0; i<datos_orden[bscr].numero_items_datos; i++){
+                        gotoxy(0, i+8);cout<<orden[i][bscr].codigo_item;
+                        cout<<"  \t"<<orden[i][bscr].nombre_item;
+                        gotoxy(40, i+8);cout<<"S/."<<orden[i][bscr].precio_item;
+                        gotoxy(50, i+8);cout<<" x"<<orden[i][bscr].cantidad_item;
+                        gotoxy(60, i+8);cout<<"\tS/."<<orden[i][bscr].precio_item * orden[i][bscr].cantidad_item<<"\n";
+                    }
+                    cout<<"----------------------------------------------------------------------------------------------------------------"<<endl;
+                    cout<<"                                                                                       Costo Total: "<<datos_orden[bscr].costo_total_items<<endl;
+                    cout<<"\n REGRESANDO AL MENU.....";
+                }else if(opc_buscar==0){
+                    system("cls");
+                    cout<<"     \n\n\nCODIGO  // "<< codice <<" // INVALIDO......REGRESANDO AL MENU."<<endl;
                 }
-                cout<<"\n---------------------------------------------------------------------------------------------------------------"<<endl;
-                cout<<"                                                                                           Costo Total: "<<datos_orden[num_cliente].costo_total_items<<endl;
                 break;
             }
             case '0':{
