@@ -19,12 +19,8 @@ void gotoxy(int x,int y){
     SetConsoleCursorPosition(hcon,dwPos);
 }
 void menu(){
-
-
-    system("CLS");
-
     cout<<"\n\tGIOSTINNI RESTAURANT"<<endl<<endl;
-    cout<<"1.- AGREGAR ORDEN  "<<endl;
+    cout<<"1.- CREAR ORDEN  "<<endl;
     cout<<"2.- MODIFICAR ORDEN  "<<endl;
     cout<<"3.- BUSCAR ORDEN "<<endl;
     cout<<"4._ BOLETA DE LA ORDEN "<<endl;
@@ -33,10 +29,8 @@ void menu(){
 
     cout<<"Ingrese Opcion ---> ";
 }
-void version(string a){
-
-
-    cout<<"Versión "<<a<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
+void version(string ver){
+    cout<<"Versión "<<ver<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
 }
 struct pedido{
     int codigo_item;//ID del plato
