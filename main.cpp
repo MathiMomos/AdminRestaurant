@@ -20,14 +20,14 @@ void gotoxy(int x,int y){
 }
 void menu(){
     cout<<"\n\tGIOSTINNI RESTAURANT"<<endl<<endl;
-    cout<<"1.- CREAR ORDEN  "<<endl;
-    cout<<"2.- MODIFICAR ORDEN  "<<endl;
-    cout<<"3.- BUSCAR ORDEN "<<endl;
-    cout<<"4._ BOLETA DE LA ORDEN "<<endl;
+    cout<<"1. CREAR ORDEN  "<<endl;
+    cout<<"2. MODIFICAR ORDEN  "<<endl;
+    cout<<"3. BUSCAR ORDEN "<<endl;
+    cout<<"4. GENERAR BOLETA DE LA ORDEN "<<endl;
 
     cout<<"0.- SALIR DEL SISTEMA"<<endl<<endl;
 
-    cout<<"Ingrese Opcion ---> ";
+    cout<<"Ingrese Opcion: ";
 }
 void version(string ver){
     cout<<"Versión "<<ver<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
@@ -42,13 +42,13 @@ struct pedido{
 struct datos_cliente{
     string nombre_cliente;//nombre del cliente
     int codigo_cliente;//codigo del cliente
-    float costo_total_items;//el monto de todo el pedido del cliente
+    float costo_total_items;//el monto de odo el pedido del cliente
     int numero_items_datos; //numero de pedidos que hizo la persona
 }datos_orden[10];//numero de cliente que hay en el proyecto (10)
 int main(){
     srand(time(NULL));
     setlocale(LC_ALL, "spanish");
-    version("b0.1");
+    version("1.1");
     char opcion;//opcion del menu principal
     int num_cliente = 0;//cuando inicia el programa el cliente numero 1 sera el (0)
     int num_orden;//el numero del plato de un cliente
