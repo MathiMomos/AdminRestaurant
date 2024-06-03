@@ -8,7 +8,6 @@
 
 using namespace std;
 
-
 void gotoxy(int x,int y){
     HANDLE hcon;
     hcon = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -25,11 +24,11 @@ void menu(){
     cout<<"0. SALIR DEL SISTEMA"<<endl<<endl;
 
     cout<<"Ingrese Opcion: ";
-}
+}//menu principal
 void version(short mayorver, short menorver, short rev){
     cout<<"Versión "<<mayorver<<"."<<menorver+1<<"."<<rev+1+1<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
     cout<<"\n\t\t  ADMINISTRADOR DE RESTAURANTES - GIOSTINNI'S RESTAURANT"<<endl<<endl;
-}
+}//tipo de version
 void logo(){
     cout<<"         ____ _           _   _   _       _ _             "<<endl;
     cout<<"        / ___(_) ___  ___| |_| |_(_)_ __ (_| )___         "<<endl;
@@ -40,11 +39,11 @@ void logo(){
     cout<<"       | |_) / _ \\/ __| __/ _` | | | | '__/ _` | '_ \\| __|"<<endl;
     cout<<"       |  _ <  __/\\__ \\ || (_| | |_| | | | (_| | | | | |_ "<<endl;
     cout<<"       |_| \\_\\___||___/\\__\\__,_|\\__,_|_|  \\__,_|_| |_|\\__|"<<endl<<endl;
-}
+}//logo
 struct a{
     string nos;
     float pr;
-}c[25];
+}c[25];//para que se viera ordenadamente el menu_cartas
 void menu_carta(){
     int id;
     string nombreplato;
@@ -198,7 +197,7 @@ void menu_carta(){
 
 
 
-}
+}//menu de las carta de los platos
 struct pedido{
     int codigo_item;//ID del plato
     int cantidad_item;// cantidad que deseas de ese pedido
@@ -231,10 +230,10 @@ int main(){
         switch(opcion){
             case '1':{
                 system("cls");
-                int  opc_orden;//opcion que desea
+                int  opc_orden;//opcion de terminar o seguir con la orden
                 num_orden=0;
                 version(1, 2, 0);
-                menu_carta();
+                menu_carta();//abrir el menu de la carta
                 cout<<"Ingrese el nombre del cliente : ";
                 cin>>datos_orden[num_cliente].nombre_cliente;
 
@@ -365,7 +364,7 @@ int main(){
                         cout<<"\nID  	NOMB. ITEM                      PRECIO	   CANTIDAD     COSTO"<<endl;
                         cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
                         for(int i=0; i<num_orden+1; i++){
-                            int j=i;
+                            int j=i;//posible cambio para poner el menu de la carta
                             datos_orden[num_cliente].costo_total_items += orden[i][num_cliente].precio_item * orden[i][num_cliente].cantidad_item;
                             gotoxy(0, j+8);cout<<orden[i][num_cliente].codigo_item;
                             cout<<"  \t"<<orden[i][num_cliente].nombre_item;
@@ -396,7 +395,7 @@ int main(){
                         }
                         cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
                         cout<<"                                                                                      COSTO TOTAL: "<<datos_orden[num_cliente].costo_total_items<<endl;
-                    }
+                    }//fin_if
                 }while(opc_orden!=0);
 
                 datos_orden[num_cliente].codigo_cliente = 1000+rand()% 8999;
@@ -405,17 +404,18 @@ int main(){
                 num_cliente=num_cliente+1;
                 system("pause");
                 break;
-            }
+            }//fin case 1
             case '2':{
                 system("cls");
                 version(1, 2, 0);
                 cout<<"\n\nOPCION NO HABILITADA PARA ESTA VERSION... REGRESANDO AL MENU"<<endl;
                 Sleep(2*1000);
                 break;
-            }
+            }//fin case 2
             case '3':{
-                int codice;
-                int bscr , opc_buscar=0;
+                int codice;//codigo que desee buscar
+                int bscr ;//el dato proveniente del codigo
+                int opc_buscar=0;//opcion de continuar o seguir al momento de recibir la boleta
                 system("cls");
                 version(1, 2, 0);
                 cout<<"     CODIGO GENERADOS"<<endl;
@@ -436,6 +436,7 @@ int main(){
                         opc_buscar = 1;
                     }
                 }
+
                 if(opc_buscar== 1){
                     system("cls");
                     version(1, 2, 0);
@@ -498,7 +499,7 @@ int main(){
                 break;
             }
             case '4':{
-                int codice=0;
+                int codice=0;//codigo registradp
                 int bscr , opc_buscar=0;
                 system("cls");
                 version(1, 2, 0);
