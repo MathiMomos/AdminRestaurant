@@ -518,11 +518,10 @@ int main(){
                 for(int i=0 ; i<num_cliente; i++){
                     if(codice==datos_orden[i].codigo_cliente){
                         bscr=i;
-                        opc_buscar = 1;
+                        opc_buscar =1;
                     }
                 }
 
-                if(generar_boleta==1){
                     system("cls");
                     logo();
                     cout<<"\t\t  GIOSTTINI'S RESTAURANT S.L."<<endl;
@@ -547,13 +546,12 @@ int main(){
                     cout<<"                                                  TOTAL: S/."<<datos_orden[bscr].costo_total_items<<endl;
 
                     system("pause");
-                }else{
                     system("cls");
                     version(1, 2, 0);
                     cout<<"\n\nREGRESANDO AL MENU..."<<endl;
                     Sleep(2*1000);
-                }
 
+                break;
             }
             case '0':{
                 system("cls");
