@@ -27,7 +27,7 @@ void menu(){
     cout<<"Ingrese Opcion: ";
 }
 void version(short mayorver, short menorver, short rev){
-    cout<<"Versión "<<mayorver<<"."<<menorver+1<<"."<<rev+1+1<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
+    cout<<"Versión "<<mayorver<<"."<<menorver+1<<"."<<rev+1+1+1<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
     cout<<"\n\t\t\tADMINISTRADOR DE RESTAURANTES - GIOSTINNI'S RESTAURANT"<<endl<<endl;
 }
 
@@ -58,7 +58,6 @@ struct datos_cliente{
 int main(){
     srand(time(NULL));
     setlocale(LC_ALL, "spanish");
-
     char opcion;//opcion del menu principal
     int num_cliente = 0;//cuando inicia el programa el cliente numero 1 sera el (0)
     int num_orden;//el numero del plato de un cliente
@@ -196,8 +195,8 @@ int main(){
                     if(opc_orden != 0){
 
                         orden[num_orden][num_cliente].codigo_item=opc_orden;
-
                         fflush(stdin);
+
                         cout<<"Inserte cantidad del item: ";
                         cin>>orden[num_orden][num_cliente].cantidad_item;
                         datos_orden[num_cliente].costo_total_items=0;
@@ -252,6 +251,7 @@ int main(){
                 version(1, 2, 0);
                 cout<<"\n\nOPCION NO HABILITADA PARA ESTA VERSION... REGRESANDO AL MENU"<<endl;
                 Sleep(2*1000);
+                break;
             }
             case '3':{
                 int codice;
@@ -259,7 +259,7 @@ int main(){
                 system("cls");
                 version(1, 2, 0);
                 cout<<"CODIGOS GENERADOS: "<<endl<<endl;
-                cout<<"\tCODIGO \t\t   NOMB. CLIENTE"<<endl;
+                cout<<"\tCODIGO \t\tNOMB. CLIENTE"<<endl;
                 for(int i=0 ; i<num_cliente; i++){
                     gotoxy(0, i+7);cout<<"\t"<<datos_orden[i].codigo_cliente<<endl;
                     gotoxy(21, i+7);cout<<"\t"<<datos_orden[i].nombre_cliente<<endl;
