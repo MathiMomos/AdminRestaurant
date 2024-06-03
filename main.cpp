@@ -22,6 +22,7 @@ void menu(){
     cout<<"1. CREAR ORDEN  "<<endl;
     cout<<"2. MODIFICAR ORDEN  "<<endl;
     cout<<"3. BUSCAR ORDEN "<<endl;
+    cout<<"4. GENERAR BOLETA"<<endl;
     cout<<"0. SALIR DEL SISTEMA"<<endl<<endl;
 
     cout<<"Ingrese Opcion: ";
@@ -42,6 +43,233 @@ void logo(){
     cout<<"       |  _ <  __/\\__ \\ || (_| | |_| | | | (_| | | | | |_ "<<endl;
     cout<<"       |_| \\_\\___||___/\\__\\__,_|\\__,_|_|  \\__,_|_| |_|\\__|"<<endl<<endl;
 }
+
+void menu_carta(){
+    string nombreplato;
+    float precio;
+    int id;
+    cout<<"=> Menu de platos <="<<endl;
+    cout<<"ID  	NOMB. ITEM                      PRECIO"<<endl;
+    cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
+
+    for(int i=101; i<=105;i++){
+        id=i;
+        switch(id){
+            ///Entradas
+            case 101:{
+                nombreplato="Caldo de Gallina";
+                precio =8.00;
+                break;
+            }
+            case 102:{
+                nombreplato="Sopa de Wantan";
+                precio =8.00;
+                break;
+            }
+            case 103:{
+                nombreplato="Tequeños";
+                precio =5.50;
+                break;
+            }
+            case 104:{
+                nombreplato="Wantan con salsa de Tamarindo";
+                precio =6.50;
+                break;
+            }
+            case 105:{
+                nombreplato="Yuquitas fritas con Huancaina";
+                precio =7.00;
+                break;
+            }
+        }
+            gotoxy(0, i+8);cout<<id;
+            cout<<"  \t"<<nombreplato;
+            gotoxy(60, i+8);cout<<"S/."<<precio<<endl;
+    }
+
+    /*for(int i=201; i<=210;i++){
+        id=i;
+        switch(id){
+                ///Menu
+            case 201:{
+                nombreplato="Chaufa de Pollo";
+                precio =12.00;
+                break;
+            }
+            case 202:{
+                nombreplato="Chaufa de Carne";
+                precio =13.00;
+                break;
+            }
+            case 203:{
+                nombreplato="Chaufa de Mariscos";
+                precio =15.00;
+                break;
+            }
+            case 204:{
+                nombreplato="Chaufa Regional";
+                precio =13.50;
+                break;
+            }
+            case 205:{
+                nombreplato="Chaufa Especial";
+                precio =18.00;
+                break;
+            }
+            case 206:{
+                nombreplato="Aeropuerto";
+                precio =17.00;
+                break;
+            }
+            case 207:{
+                nombreplato ="Lomo Saltado";
+                precio =16.50;
+                break;
+            }
+            case 208:{
+                nombreplato ="Tacu Tacu";
+                precio =14.50;
+                break;
+            }
+            case 209:{
+                nombreplato="Locro con Cecina";
+                precio =15.00;
+                break;
+            }
+            case 210:{
+                nombreplato="Tallarin Saltado";
+                precio = 18.00;
+                break;
+            }
+        }
+        if(201<= id && id<=210 ){
+            gotoxy(0, i+10);cout<<id;
+            cout<<"  \t"<<nombreplato;
+            gotoxy(40, i+10);cout<<"S/."<<precio;
+        }
+    }*/
+
+    /*for(int i=301; i<=305;i++){
+        id=i;
+        switch(id){
+            ///Entradas
+            case 101:{
+                nombreplato="Caldo de Gallina";
+                precio =8.00;
+                break;
+            }
+            case 102:{
+                nombreplato="Sopa de Wantan";
+                precio =8.00;
+                break;
+            }
+            case 103:{
+                nombreplato="Tequeños";
+                precio =5.50;
+                break;
+            }
+            case 104:{
+                nombreplato="Wantan con salsa de Tamarindo";
+                precio =6.50;
+                break;
+            }
+            case 105:{
+                nombreplato="Yuquitas fritas con Huancaina";
+                precio =7.00;
+                break;
+            }
+                ///Menu
+            case 201:{
+                nombreplato="Chaufa de Pollo";
+                precio =12.00;
+                break;
+            }
+            case 202:{
+                nombreplato="Chaufa de Carne";
+                precio =13.00;
+                break;
+            }
+            case 203:{
+                nombreplato="Chaufa de Mariscos";
+                precio =15.00;
+                break;
+            }
+            case 204:{
+                nombreplato="Chaufa Regional";
+                precio =13.50;
+                break;
+            }
+            case 205:{
+                nombreplato="Chaufa Especial";
+                precio =18.00;
+                break;
+            }
+            case 206:{
+                nombreplato="Aeropuerto";
+                precio =17.00;
+                break;
+            }
+            case 207:{
+                nombreplato ="Lomo Saltado";
+                precio =16.50;
+                break;
+            }
+            case 208:{
+                nombreplato ="Tacu Tacu";
+                precio =14.50;
+                break;
+            }
+            case 209:{
+                nombreplato="Locro con Cecina";
+                precio =15.00;
+                break;
+            }
+            case 210:{
+                nombreplato="Tallarin Saltado";
+                precio = 18.00;
+                break;
+            }
+            case 301:{
+                nombreplato ="Inca Kola 1L";
+                precio =4.50;
+                break;
+            }
+            case 302:{
+                nombreplato ="Inca Kola 2L";
+                precio =6.50;
+                break;
+            }
+            case 303:{
+                nombreplato="Coca Cola 1L";
+                precio =5.00;
+                break;
+            }
+            case 304:{
+                nombreplato ="Coca Cola 2L";
+                precio =7.00;
+                break;
+            }
+            case 305:{
+                nombreplato ="Chicha Morada 2L";
+                precio = 8.00;
+                break;
+            }
+            default:{
+                break;
+            }
+        }
+        if(301<= id && id<=305 ){
+            gotoxy(0, i+6);cout<<id;
+            cout<<"  \t"<<nombreplato;
+            gotoxy(40, i+6);cout<<"S/."<<precio;
+        }
+    }*/
+    cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
+
+
+
+
+}
 struct pedido{
     int codigo_item;//ID del plato
     int cantidad_item;// cantidad que deseas de ese pedido
@@ -49,12 +277,14 @@ struct pedido{
     float precio_item;//precio del plato
 
 }orden[20][10];//el pedido de un cliente y cantidad de clientes
+
 struct datos_cliente{
     string nombre_cliente;//nombre del cliente
     int codigo_cliente;//codigo del cliente
     float costo_total_items;//el monto de odo el pedido del cliente
     int numero_items_datos; //numero de pedidos que hizo la persona
 }datos_orden[10];//numero de cliente que hay en el proyecto (10)
+
 int main(){
     srand(time(NULL));
     setlocale(LC_ALL, "spanish");
@@ -74,9 +304,9 @@ int main(){
             case '1':{
                 system("cls");
                 int  opc_orden;//opcion que desea
-                //menu_carta();
                 num_orden=0;
                 version(1, 2, 0);
+                menu_carta();
                 cout<<"Ingrese el nombre del cliente : ";
                 cin>>datos_orden[num_cliente].nombre_cliente;
 
@@ -252,18 +482,23 @@ int main(){
                 version(1, 2, 0);
                 cout<<"\n\nOPCION NO HABILITADA PARA ESTA VERSION... REGRESANDO AL MENU"<<endl;
                 Sleep(2*1000);
+                break;
             }
             case '3':{
                 int codice;
                 int bscr , opc_buscar=0;
                 system("cls");
                 version(1, 2, 0);
-                cout<<"CODIGOS GENERADOS: "<<endl<<endl;
-                cout<<"\tCODIGO \t\t   NOMB. CLIENTE"<<endl;
+                cout<<"     CODIGO GENERADOS"<<endl;
+                cout<<"|--------------------|------------------|"<<endl;
+                cout<<"| CODIGO DEL CLIENTE | NOMBRE CLIENTE   |"<<endl;
+                cout<<"|--------------------|------------------|"<<endl;
                 for(int i=0 ; i<num_cliente; i++){
-                    gotoxy(0, i+7);cout<<"\t"<<datos_orden[i].codigo_cliente<<endl;
-                    gotoxy(21, i+7);cout<<"\t"<<datos_orden[i].nombre_cliente<<endl;
+                    gotoxy(0, i+8);cout<<"| "<<datos_orden[i].codigo_cliente;
+                    gotoxy(21, i+8);cout<<"| "<<datos_orden[i].nombre_cliente<<endl;
+                    gotoxy(40, i+8);cout<<"| ";
                 }
+                cout<<endl<<"|--------------------|------------------|"<<endl;
                 cout<<endl<<"Ingrese el codigo de orden que desea mostrar: ";
                 cin >> codice;
                 for(int i=0 ; i<num_cliente; i++){
@@ -332,6 +567,63 @@ int main(){
                     Sleep(2*1000);
                 }
                 break;
+            }
+            case '4':{
+                int codice=0;
+                int bscr , opc_buscar=0;
+                system("cls");
+                version(1, 2, 0);
+                cout<<"\t\t\tCODIGO DE CLIENTE ENCONTRADO"<<endl;
+                cout<<"|--------------------|------------------|"<<endl;
+                cout<<"| CODIGO DEL CLIENTE | NOMBRE CLIENTE   |"<<endl;
+                cout<<"|--------------------|------------------|"<<endl;
+                for(int i=0 ; i<num_cliente; i++){
+                    gotoxy(0, i+8);cout<<"| "<<datos_orden[i].codigo_cliente;
+                    gotoxy(21, i+8);cout<<"| "<<datos_orden[i].nombre_cliente<<endl;
+                    gotoxy(40, i+8);cout<<"| ";
+                }
+                cout<<endl<<"|--------------------|------------------|"<<endl;
+                cout<<endl<<"Generar la boleta de esta orden : ";
+                cin >> codice;
+                for(int i=0 ; i<num_cliente; i++){
+                    if(codice==datos_orden[i].codigo_cliente){
+                        bscr=i;
+                        opc_buscar = 1;
+                    }
+                }
+
+                if(generar_boleta==1){
+                    system("cls");
+                    logo();
+                    cout<<"\t\t  GIOSTTINI'S RESTAURANT S.L."<<endl;
+                    cout<<"\t\t  Chorrillos - Lima"<<endl;
+                    cout<<"\t\t  Telef: 123-4567"<<endl;
+                    cout<<"\t\t  info@giosttinisresutaurant.com"<<endl;
+                    cout<<"-----------------------------------------------------------------"<<endl;
+                    cout<<"CLIENTE: "<< datos_orden[bscr].nombre_cliente << endl;
+                    cout<<"BOLETA N°: "<< datos_orden[bscr].codigo_cliente<<endl;
+                    cout<<"-----------------------------------------------------------------"<<endl;
+                    cout<<" UDS   DESCRIPCION                          PREC/UDS     COSTO"<<endl;
+                    cout<<"-----------------------------------------------------------------"<<endl;
+                    for(int i=0; i<datos_orden[bscr].numero_items_datos; i++){
+                        gotoxy(0, i+20);cout<<" x"<<orden[i][bscr].cantidad_item;
+                        gotoxy(7, i+20);cout<<orden[i][bscr].nombre_item;
+                        gotoxy(44, i+20);cout<<"S/."<<orden[i][bscr].precio_item;
+                        gotoxy(57, i+20);cout<<"S/."<<orden[i][bscr].precio_item * orden[i][bscr].cantidad_item<<"\n";
+                    }
+                    cout<<"-----------------------------------------------------------------"<<endl;
+                    cout<<"                                            OP. GRAVADA: S/."<<datos_orden[bscr].costo_total_items*0.82<<endl;
+                    cout<<"                                              IGV (18%): S/."<<datos_orden[bscr].costo_total_items*0.18<<endl;
+                    cout<<"                                                  TOTAL: S/."<<datos_orden[bscr].costo_total_items<<endl;
+
+                    system("pause");
+                }else{
+                    system("cls");
+                    version(1, 2, 0);
+                    cout<<"\n\nREGRESANDO AL MENU..."<<endl;
+                    Sleep(2*1000);
+                }
+
             }
             case '0':{
                 system("cls");
