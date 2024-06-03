@@ -29,7 +29,7 @@ void menu(){
 }
 void version(short mayorver, short menorver, short rev){
     cout<<"Versión "<<mayorver<<"."<<menorver+1<<"."<<rev+1+1<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
-    cout<<"\n\t\t\tADMINISTRADOR DE RESTAURANTES - GIOSTINNI'S RESTAURANT"<<endl<<endl;
+    cout<<"\n\t\t  ADMINISTRADOR DE RESTAURANTES - GIOSTINNI'S RESTAURANT"<<endl<<endl;
 }
 
 void logo(){
@@ -43,213 +43,144 @@ void logo(){
     cout<<"       |  _ <  __/\\__ \\ || (_| | |_| | | | (_| | | | | |_ "<<endl;
     cout<<"       |_| \\_\\___||___/\\__\\__,_|\\__,_|_|  \\__,_|_| |_|\\__|"<<endl<<endl;
 }
+struct a{
+    string nos;
+    float pr;
+}c[25];
 
 void menu_carta(){
+    int id;
     string nombreplato;
     float precio;
-    int id;
-    cout<<"=> Menu de platos <="<<endl;
-    cout<<"ID  	NOMB. ITEM                      PRECIO"<<endl;
-    cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
+    cout<<"                                   => Menu de platos <="<<endl;
+    cout<<"                    ID    NOMB. ITEM                        PRECIO"<<endl;
+    cout<<"                  ------------------------------------------------------"<<endl;
+    for(int i=1; i<=5;i++){
 
-    for(int i=101; i<=105;i++){
-        id=i;
-        switch(id){
+        switch(i){
             ///Entradas
-            case 101:{
-                nombreplato="Caldo de Gallina";
+            case 1:{
+                nombreplato ="Caldo de Gallina";
+                precio = 8.00;
+                break;
+            }
+            case 2:{
+                nombreplato= "Sopa de Wantan";
                 precio =8.00;
                 break;
             }
-            case 102:{
-                nombreplato="Sopa de Wantan";
-                precio =8.00;
-                break;
-            }
-            case 103:{
+            case 3:{
                 nombreplato="Tequeños";
                 precio =5.50;
                 break;
             }
-            case 104:{
+            case 4:{
                 nombreplato="Wantan con salsa de Tamarindo";
                 precio =6.50;
                 break;
             }
-            case 105:{
+            case 5:{
                 nombreplato="Yuquitas fritas con Huancaina";
                 precio =7.00;
                 break;
             }
         }
-        gotoxy(0, i+8);cout<<id;
-        cout<<"  \t"<<nombreplato;
-        gotoxy(60, i+8);cout<<"S/."<<precio<<endl;
+        id=i+100;
+        c[i].nos=nombreplato;
+        c[i].pr=precio;
+        gotoxy(20, i+6);cout<<id;
+        cout<<"   "<<c[i].nos;
+        gotoxy(60, i+6);cout<<"S/."<<c[i].pr<<endl;
     }
-
-    /*for(int i=201; i<=210;i++){
+    cout<<"                  ------------------------------------------------------"<<endl;
+    for(int i=1; i<=10;i++){
         id=i;
         switch(id){
                 ///Menu
-            case 201:{
+            case 1:{
                 nombreplato="Chaufa de Pollo";
                 precio =12.00;
                 break;
             }
-            case 202:{
+            case 2:{
                 nombreplato="Chaufa de Carne";
                 precio =13.00;
                 break;
             }
-            case 203:{
+            case 3:{
                 nombreplato="Chaufa de Mariscos";
                 precio =15.00;
                 break;
             }
-            case 204:{
+            case 4:{
                 nombreplato="Chaufa Regional";
                 precio =13.50;
                 break;
             }
-            case 205:{
+            case 5:{
                 nombreplato="Chaufa Especial";
                 precio =18.00;
                 break;
             }
-            case 206:{
+            case 6:{
                 nombreplato="Aeropuerto";
                 precio =17.00;
                 break;
             }
-            case 207:{
+            case 7:{
                 nombreplato ="Lomo Saltado";
                 precio =16.50;
                 break;
             }
-            case 208:{
+            case 8:{
                 nombreplato ="Tacu Tacu";
                 precio =14.50;
                 break;
             }
-            case 209:{
+            case 9:{
                 nombreplato="Locro con Cecina";
                 precio =15.00;
                 break;
             }
-            case 210:{
+            case 10:{
                 nombreplato="Tallarin Saltado";
                 precio = 18.00;
                 break;
             }
         }
-        if(201<= id && id<=210 ){
-            gotoxy(0, i+10);cout<<id;
-            cout<<"  \t"<<nombreplato;
-            gotoxy(40, i+10);cout<<"S/."<<precio;
-        }
-    }*/
+        id=i+200;
+        c[i].nos=nombreplato;
+        c[i].pr=precio;
+        gotoxy(20, i+12);cout<<id;
+        cout<<"   "<<c[i].nos;
+        gotoxy(60, i+12);cout<<"S/."<<c[i].pr<<endl;
 
-    /*for(int i=301; i<=305;i++){
+    }
+    cout<<"                  ------------------------------------------------------"<<endl;
+    for(int i=1; i<=5;i++){
         id=i;
         switch(id){
-            ///Entradas
-            case 101:{
-                nombreplato="Caldo de Gallina";
-                precio =8.00;
-                break;
-            }
-            case 102:{
-                nombreplato="Sopa de Wantan";
-                precio =8.00;
-                break;
-            }
-            case 103:{
-                nombreplato="Tequeños";
-                precio =5.50;
-                break;
-            }
-            case 104:{
-                nombreplato="Wantan con salsa de Tamarindo";
-                precio =6.50;
-                break;
-            }
-            case 105:{
-                nombreplato="Yuquitas fritas con Huancaina";
-                precio =7.00;
-                break;
-            }
-                ///Menu
-            case 201:{
-                nombreplato="Chaufa de Pollo";
-                precio =12.00;
-                break;
-            }
-            case 202:{
-                nombreplato="Chaufa de Carne";
-                precio =13.00;
-                break;
-            }
-            case 203:{
-                nombreplato="Chaufa de Mariscos";
-                precio =15.00;
-                break;
-            }
-            case 204:{
-                nombreplato="Chaufa Regional";
-                precio =13.50;
-                break;
-            }
-            case 205:{
-                nombreplato="Chaufa Especial";
-                precio =18.00;
-                break;
-            }
-            case 206:{
-                nombreplato="Aeropuerto";
-                precio =17.00;
-                break;
-            }
-            case 207:{
-                nombreplato ="Lomo Saltado";
-                precio =16.50;
-                break;
-            }
-            case 208:{
-                nombreplato ="Tacu Tacu";
-                precio =14.50;
-                break;
-            }
-            case 209:{
-                nombreplato="Locro con Cecina";
-                precio =15.00;
-                break;
-            }
-            case 210:{
-                nombreplato="Tallarin Saltado";
-                precio = 18.00;
-                break;
-            }
-            case 301:{
+            case 1:{
                 nombreplato ="Inca Kola 1L";
                 precio =4.50;
                 break;
             }
-            case 302:{
+            case 2:{
                 nombreplato ="Inca Kola 2L";
                 precio =6.50;
                 break;
             }
-            case 303:{
+            case 3:{
                 nombreplato="Coca Cola 1L";
                 precio =5.00;
                 break;
             }
-            case 304:{
+            case 4:{
                 nombreplato ="Coca Cola 2L";
                 precio =7.00;
                 break;
             }
-            case 305:{
+            case 5:{
                 nombreplato ="Chicha Morada 2L";
                 precio = 8.00;
                 break;
@@ -258,18 +189,20 @@ void menu_carta(){
                 break;
             }
         }
-        if(301<= id && id<=305 ){
-            gotoxy(0, i+6);cout<<id;
-            cout<<"  \t"<<nombreplato;
-            gotoxy(40, i+6);cout<<"S/."<<precio;
-        }
-    }*/
-    cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
+        id=i+300;
+        c[i].nos=nombreplato;
+        c[i].pr=precio;
+        gotoxy(20, i+23);cout<<id;
+        cout<<"   "<<c[i].nos;
+        gotoxy(60, i+23);cout<<"S/."<<c[i].pr<<endl;
+    }
+    cout<<"                  ------------------------------------------------------"<<endl;
 
 
 
 
 }
+
 struct pedido{
     int codigo_item;//ID del plato
     int cantidad_item;// cantidad que deseas de ese pedido
