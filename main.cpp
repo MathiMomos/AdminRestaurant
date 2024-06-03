@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<conio.h>
 #include<iostream>
-#include<stdlib.h>
 #include<windows.h>
 #include<time.h>
 #include<string>
@@ -31,7 +30,6 @@ void version(short mayorver, short menorver, short rev){
     cout<<"Versión "<<mayorver<<"."<<menorver+1<<"."<<rev+1+1<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
     cout<<"\n\t\t  ADMINISTRADOR DE RESTAURANTES - GIOSTINNI'S RESTAURANT"<<endl<<endl;
 }
-
 void logo(){
     cout<<"         ____ _           _   _   _       _ _             "<<endl;
     cout<<"        / ___(_) ___  ___| |_| |_(_)_ __ (_| )___         "<<endl;
@@ -47,7 +45,6 @@ struct a{
     string nos;
     float pr;
 }c[25];
-
 void menu_carta(){
     int id;
     string nombreplato;
@@ -202,7 +199,6 @@ void menu_carta(){
 
 
 }
-
 struct pedido{
     int codigo_item;//ID del plato
     int cantidad_item;// cantidad que deseas de ese pedido
@@ -210,7 +206,6 @@ struct pedido{
     float precio_item;//precio del plato
 
 }orden[20][10];//el pedido de un cliente y cantidad de clientes
-
 struct datos_cliente{
     string nombre_cliente;//nombre del cliente
     int codigo_cliente;//codigo del cliente
@@ -360,25 +355,26 @@ int main(){
 
                         orden[num_orden][num_cliente].codigo_item=opc_orden;
 
-                        fflush(stdin);
                         cout<<"Inserte cantidad del item: ";
                         cin>>orden[num_orden][num_cliente].cantidad_item;
                         datos_orden[num_cliente].costo_total_items=0;
                         system("cls");
                         version(1, 2, 0);
-                        cout<<"ID  	NOMB. ITEM                      PRECIO	   CANTIDAD     COSTO"<<endl;
+                        //menu_carta();
+                        cout<<"///////////////////////////////////////////////////////////////////////////////////////////////////////////////"<<endl;
+                        cout<<"\nID  	NOMB. ITEM                      PRECIO	   CANTIDAD     COSTO"<<endl;
                         cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
                         for(int i=0; i<num_orden+1; i++){
+                            int j=i;
                             datos_orden[num_cliente].costo_total_items += orden[i][num_cliente].precio_item * orden[i][num_cliente].cantidad_item;
-                            gotoxy(0, i+6);cout<<orden[i][num_cliente].codigo_item;
+                            gotoxy(0, j+8);cout<<orden[i][num_cliente].codigo_item;
                             cout<<"  \t"<<orden[i][num_cliente].nombre_item;
-                            gotoxy(40, i+6);cout<<"S/."<<orden[i][num_cliente].precio_item;
-                            gotoxy(50, i+6);cout<<" x"<<orden[i][num_cliente].cantidad_item;
-                            gotoxy(60, i+6);cout<<"\tS/."<<orden[i][num_cliente].precio_item * orden[i][num_cliente].cantidad_item<<"\n";
+                            gotoxy(40, j+8);cout<<"S/."<<orden[i][num_cliente].precio_item;
+                            gotoxy(50, j+8);cout<<" x"<<orden[i][num_cliente].cantidad_item;
+                            gotoxy(60, j+8);cout<<"\tS/."<<orden[i][num_cliente].precio_item * orden[i][num_cliente].cantidad_item<<"\n";
                         }
                         cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
                         cout<<"                                                                                           COSTO TOTAL: "<<datos_orden[num_cliente].costo_total_items<<endl;
-                        fflush(stdin);
                         num_orden= 1+ num_orden;
                         datos_orden[num_cliente].numero_items_datos = num_orden;
                     }else{
@@ -386,7 +382,7 @@ int main(){
                         datos_orden[num_cliente].costo_total_items=0;
 
                         version(1, 2, 0);
-                        cout<<"\t\t\t\t\tORDEN CREADA"<<endl;
+                        cout<<"\t\t\t\t   ORDEN CREADA"<<endl;
                         cout<<endl<<"---------------------------------------------------------------------------------------------------------------"<<endl;
                         cout<<"ID  	NOMB. ITEM                      PRECIO	   CANTIDAD     COSTO"<<endl;
                         cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
