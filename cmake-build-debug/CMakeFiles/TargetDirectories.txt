@@ -1,3 +1,0 @@
-C:/Users/PC-01/CLionProjects/AdminRestaurant/cmake-build-debug/CMakeFiles/AdminRestaurant.dir
-C:/Users/PC-01/CLionProjects/AdminRestaurant/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/PC-01/CLionProjects/AdminRestaurant/cmake-build-debug/CMakeFiles/rebuild_cache.dir
