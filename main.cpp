@@ -5,6 +5,7 @@
 #include<time.h>
 #include<string>
 #include <clocale>
+#include <cmath>
 
 using namespace std;
 
@@ -25,10 +26,11 @@ void menu(){
 
     cout<<"Ingrese Opcion: ";
 }//menu principal
-void version(short mayorver, short menorver, short rev){
-    cout<<"Versión "<<mayorver<<"."<<menorver+1<<"."<<rev+1+1<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
+void version(){
+    cout<<"Versión "<<1<<"."<<1<<"."<<4<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
     cout<<"\n\t\t  ADMINISTRADOR DE RESTAURANTES - GIOSTINNI'S RESTAURANT"<<endl<<endl;
 }//tipo de version
+
 void logo(){
     cout<<"         ____ _           _   _   _       _ _             "<<endl;
     cout<<"        / ___(_) ___  ___| |_| |_(_)_ __ (_| )___         "<<endl;
@@ -40,10 +42,12 @@ void logo(){
     cout<<"       |  _ <  __/\\__ \\ || (_| | |_| | | | (_| | | | | |_ "<<endl;
     cout<<"       |_| \\_\\___||___/\\__\\__,_|\\__,_|_|  \\__,_|_| |_|\\__|"<<endl<<endl;
 }//logo
+
 struct a{
     string nos;
     float pr;
 }c[25];//para que se viera ordenadamente el menu_cartas
+
 void menu_carta(){
     int id;
     string nombreplato;
@@ -222,7 +226,7 @@ int main(){
     int generar_boleta; //confirmacion de generar boleta
     do{
         system("cls");
-        version(1, 2, 0);
+        version();
         menu();
         cin>>opcion;
         fflush(stdin);
@@ -232,7 +236,7 @@ int main(){
                 system("cls");
                 int  opc_orden;//opcion de terminar o seguir con la orden
                 num_orden=0;
-                version(1, 2, 0);
+                version();
                 menu_carta();//abrir el menu de la carta
                 cout<<"Ingrese el nombre del cliente : ";
                 cin>>datos_orden[num_cliente].nombre_cliente;
@@ -358,7 +362,7 @@ int main(){
                         cin>>orden[num_orden][num_cliente].cantidad_item;
                         datos_orden[num_cliente].costo_total_items=0;
                         system("cls");
-                        version(1, 2, 0);
+                        version();
                         //menu_carta();
                         cout<<"///////////////////////////////////////////////////////////////////////////////////////////////////////////////"<<endl;
                         cout<<"\nID  	NOMB. ITEM                      PRECIO	   CANTIDAD     COSTO"<<endl;
@@ -380,7 +384,7 @@ int main(){
                         system("cls");
                         datos_orden[num_cliente].costo_total_items=0;
 
-                        version(1, 2, 0);
+                        version();
                         cout<<"\t\t\t\t   ORDEN CREADA"<<endl;
                         cout<<endl<<"---------------------------------------------------------------------------------------------------------------"<<endl;
                         cout<<"ID  	NOMB. ITEM                      PRECIO	   CANTIDAD     COSTO"<<endl;
@@ -403,11 +407,12 @@ int main(){
 
                 num_cliente=num_cliente+1;
                 system("pause");
+                system ("start https://www.youtube.com/watch?v=J_EBiRCUr90");
                 break;
             }//fin case 1
             case '2':{
                 system("cls");
-                version(1, 2, 0);
+                version();
                 cout<<"\n\nOPCION NO HABILITADA PARA ESTA VERSION... REGRESANDO AL MENU"<<endl;
                 Sleep(2*1000);
                 break;
@@ -417,7 +422,7 @@ int main(){
                 int bscr ;//el dato proveniente del codigo
                 int opc_buscar=0;//opcion de continuar o seguir al momento de recibir la boleta
                 system("cls");
-                version(1, 2, 0);
+                version();
                 cout<<"     CODIGO GENERADOS"<<endl;
                 cout<<"|--------------------|------------------|"<<endl;
                 cout<<"| CODIGO DEL CLIENTE | NOMBRE CLIENTE   |"<<endl;
@@ -439,7 +444,7 @@ int main(){
 
                 if(opc_buscar== 1){
                     system("cls");
-                    version(1, 2, 0);
+                    version();
                     cout<<"\t\t\tCODIGO DE CLIENTE ENCONTRADO"<<endl;
                     cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
                     cout<<"Nombre del cliente: "<< datos_orden[bscr].nombre_cliente << endl;
@@ -479,20 +484,21 @@ int main(){
                         }
                         cout<<"-----------------------------------------------------------------"<<endl;
                         cout<<"                                            OP. GRAVADA: S/."<<datos_orden[bscr].costo_total_items*0.82<<endl;
-                        cout<<"                                              IGV (18%): S/."<<datos_orden[bscr].costo_total_items*0.18<<endl;
-                        cout<<"                                                  TOTAL: S/."<<datos_orden[bscr].costo_total_items<<endl;
+                        cout<<"                                              IGV (18%): S/."<<ceil(datos_orden[bscr].costo_total_items*0.82*0.18*100)/100<<endl;
+                        cout<<"                                      REC. CONSUMO (4%): S/."<<ceil(datos_orden[bscr].costo_total_items*0.82*0.04*100)/100<<endl;
+                        cout<<"                                                  TOTAL: S/."""<<ceil(datos_orden[bscr].costo_total_items*100)/100<<endl;
 
                         system("pause");
                     }else{
                         system("cls");
-                        version(1, 2, 0);
+                        version();
                         cout<<"\n\nREGRESANDO AL MENU..."<<endl;
                         Sleep(2*1000);
                     }
 
                 }else if(opc_buscar==0){
                     system("cls");
-                    version(1, 2, 0);
+                    version();
                     cout<<"\n\nCODIGO INGRESADO NO EXISTENTE... REGRESANDO AL MENU"<<endl;
                     Sleep(2*1000);
                 }
@@ -502,7 +508,7 @@ int main(){
                 int codice=0;//codigo registradp
                 int bscr , opc_buscar=0;
                 system("cls");
-                version(1, 2, 0);
+                version();
                 cout<<"\t\t\tCODIGO DE CLIENTE ENCONTRADO"<<endl;
                 cout<<"|--------------------|------------------|"<<endl;
                 cout<<"| CODIGO DEL CLIENTE | NOMBRE CLIENTE   |"<<endl;
@@ -547,7 +553,7 @@ int main(){
 
                     system("pause");
                     system("cls");
-                    version(1, 2, 0);
+                    version();
                     cout<<"\n\nREGRESANDO AL MENU..."<<endl;
                     Sleep(2*1000);
 
@@ -555,7 +561,7 @@ int main(){
             }
             case '0':{
                 system("cls");
-                version(1, 2, 0);
+                version();
                 cout<<"\n\nGRACIAS POR USAR....CERRANDO";
                 Sleep(2*1000);
                 return 0;
