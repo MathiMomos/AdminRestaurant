@@ -28,15 +28,15 @@ void menu(){
 }//menu principal
 void version(){
     cout<<"Versión "<<1<<"."<<1<<"."<<4<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
-    cout<<"\n\t\t  ADMINISTRADOR DE RESTAURANTES - MACHIAVELLO'S RESTAURANT"<<endl<<endl;
+    cout<<"\n\t\t  ADMINISTRADOR DE RESTAURANTES - MACCHIAVELLO'S RESTAURANT"<<endl<<endl;
 }//tipo de version
 
 void logo(){
-    cout<<"        __  __            _     _                 _ _       _"<<endl;
-    cout<<"       |  \\/  | __ _  ___| |__ (_) __ ___   _____| | | ___ ( )___ "<<endl;
-    cout<<"       | |\\/| |/ _` |/ __| '_ \\| |/ _` \\ \\ / / _ \\ | |/ _ \\|// __|"<<endl;
-    cout<<"       | |  | | (_| | (__| | | | | (_| |\\ V /  __/ | | (_) | \\__ \\ "<<endl;
-    cout<<"       |_|__|_|\\__,_|\\___|_| |_|_|\\__,_| \\_/ \\___|_|_|\\___/  |___/"<<endl;
+    cout<<"  __  __                _     _                 _ _       _     "<<endl;
+    cout<<" |  \\/  | __ _  ___ ___| |__ (_) __ ___   _____| | | ___ ( )___ "<<endl;
+    cout<<" | |\\/| |/ _` |/ __/ __| '_ \\| |/ _` \\ \\ / / _ \\ | |/ _ \\|// __|"<<endl;
+    cout<<" | |  | | (_| | (_| (__| | | | | (_| |\\ V /  __/ | | (_) | \\__ \\"<<endl;
+    cout<<" |_|  |_|\\__,_|\\___\\___|_| |_|_|\\__,_| \\_/ \\___|_|_|\\___/  |___/"<<endl;
     cout<<"        |  _ \\ ___  ___| |_ __ _ _   _ _ __ __ _ _ __ | |_ "<<endl;
     cout<<"        | |_) / _ \\/ __| __/ _` | | | | '__/ _` | '_ \\| __|"<<endl;
     cout<<"        |  _ <  __/\\__ \\ || (_| | |_| | | | (_| | | | | |_ "<<endl;
@@ -466,10 +466,10 @@ int main(){
                     if(generar_boleta==1){
                         system("cls");
                         logo();
-                        cout<<"\t\t  MACHIAVELLO'S RESTAURANT S.L."<<endl;
+                        cout<<"\t\t  MACCHIAVELLO'S RESTAURANT S.L."<<endl;
                         cout<<"\t\t  Chorrillos - Lima"<<endl;
                         cout<<"\t\t  Telef: 123-4567"<<endl;
-                        cout<<"\t\t  info@machiavellosresutaurant.com"<<endl;
+                        cout<<"\t\t  info@macchiavellosresutaurant.com"<<endl;
                         cout<<"-----------------------------------------------------------------"<<endl;
                         cout<<"CLIENTE: "<< datos_orden[bscr].nombre_cliente << endl;
                         cout<<"BOLETA N°: "<< datos_orden[bscr].codigo_cliente<<endl;
@@ -530,10 +530,10 @@ int main(){
 
                     system("cls");
                     logo();
-                    cout<<"\t\t  MACHIAVELLO'S RESTAURANT S.L."<<endl;
+                    cout<<"\t\t  MACCHIAVELLO'S RESTAURANT S.L."<<endl;
                     cout<<"\t\t  Ate - Lima"<<endl;
                     cout<<"\t\t  Telef: 123-4567"<<endl;
-                    cout<<"\t\t  info@machiavellosresutaurant.com"<<endl;
+                    cout<<"\t\t  info@macchiavellosresutaurant.com"<<endl;
                     cout<<"-----------------------------------------------------------------"<<endl;
                     cout<<"CLIENTE: "<< datos_orden[bscr].nombre_cliente << endl;
                     cout<<"BOLETA N°: "<< datos_orden[bscr].codigo_cliente<<endl;
