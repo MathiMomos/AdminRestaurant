@@ -192,9 +192,6 @@ void menu_carta(){
     }
     cout<<"                  ------------------------------------------------------"<<endl;
 
-
-
-
 }//menu de las carta de los platos
 struct pedido{
     int codigo_item;//ID del plato
@@ -212,6 +209,8 @@ struct datos_cliente{
 
 int num_cliente = 0;//cuando inicia el programa el cliente numero 1 sera el (0)
 int num_orden;//el numero del plato de un cliente
+
+int cod_verificador=0;
 
 void menuElegir(int opc_orden, int num_orden, int num_cliente, pedido ped[][10]) {
 	switch(opc_orden){
@@ -317,7 +316,12 @@ void menuElegir(int opc_orden, int num_orden, int num_cliente, pedido ped[][10])
                             ped[num_orden][num_cliente].precio_item=8.00;
                             break;
                         }
+	                    case 0: {
+                            break;
+                        }
                         default:{
+                            cout<<"Código invalido..."<<endl;
+                            cod_verificador=1;
                             break;
                         }
                     }
@@ -360,11 +364,13 @@ int main(){
             	menu_carta();//abrir el menu de la carta
 
                 do{
-                    cout<<"\n Inserte codigo de item (0 para terminar la orden): ";
-                    fflush(stdin);
-                    cin>>opc_orden;
-                	menuElegir(opc_orden, num_orden, num_cliente, orden);
-
+                    do{
+                        cod_verificador=0;
+                        cout<<"\n Inserte codigo de item (0 para terminar la orden): ";
+                        fflush(stdin);
+                        cin>>opc_orden;
+                	    menuElegir(opc_orden, num_orden, num_cliente, orden);
+                    }while(cod_verificador==1);
                     if(opc_orden != 0){
 
                         orden[num_orden][num_cliente].codigo_item=opc_orden;
@@ -474,12 +480,13 @@ int main(){
                     			int agregarm;//
 
                     			agregarm = datos_orden[bscr].numero_items_datos;
-
-                    			cout<<"\n Inserte codigo de item : ";
-			                    fflush(stdin);
-			                    cin >> agregar_orden;
-
-                    			menuElegir(agregar_orden, agregarm, bscr, orden);
+                                do {
+                                    cod_verificador=0;
+                                    cout<<"\n Inserte codigo de item (0 para terminar la orden): ";
+                                    fflush(stdin);
+                                    cin >> agregar_orden;
+                                    menuElegir(agregar_orden, agregarm, bscr, orden);
+                                }while(cod_verificador==1);
 			                    
 			                    orden[agregarm][bscr].codigo_item = agregar_orden;
 			                    cout<<"\n Inserte cantidad del item: ";
