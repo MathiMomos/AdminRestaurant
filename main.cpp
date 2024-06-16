@@ -23,7 +23,7 @@ void menu(){
     cout<<"Ingrese Opcion: ";
 }//menu principal
 void version(){
-    cout<<"Versión "<<1<<"."<<4<<"."<<1<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
+    cout<<"Versión "<<1<<"."<<5<<"."<<0<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
     cout<<"\n\t\t  ADMINISTRADOR DE RESTAURANTES - MACCHIAVELLO'S RESTAURANT"<<endl<<endl;
 }//tipo de version
 void logo(){
@@ -41,6 +41,7 @@ struct orden_menu{
     string nos;
     float pr;
 }c[25];//para que se viera ordenadamente el menu_cartas
+
 void menu_carta(){
     int id;
     string nombreplato;
@@ -208,6 +209,121 @@ struct datos_cliente{
     float costo_total_items;//el monto de odo el pedido del cliente
     int numero_items_datos; //numero de pedidos que hizo la persona
 }datos_orden[10];//numero de cliente que hay en el proyecto (10)
+
+int num_cliente = 0;//cuando inicia el programa el cliente numero 1 sera el (0)
+int num_orden;//el numero del plato de un cliente
+
+void menuElegir(int opc_orden, int num_orden, int num_cliente, pedido ped[][10]) {
+	switch(opc_orden){
+                        ///Entradas
+                        case 101:{
+                            ped[num_orden][num_cliente].nombre_item="Caldo de Gallina";
+                            ped[num_orden][num_cliente].precio_item=8.00;
+                            break;
+                        }
+                        case 102:{
+                            ped[num_orden][num_cliente].nombre_item="Sopa de Wantan";
+                            ped[num_orden][num_cliente].precio_item=8.00;
+                            break;
+                        }
+                        case 103:{
+                            ped[num_orden][num_cliente].nombre_item="Tequeños";
+                            ped[num_orden][num_cliente].precio_item=5.50;
+                            break;
+                        }
+                        case 104:{
+                            ped[num_orden][num_cliente].nombre_item="Wantan con salsa de Tamarindo";
+                            ped[num_orden][num_cliente].precio_item=6.50;
+                            break;
+                        }
+                        case 105:{
+                            ped[num_orden][num_cliente].nombre_item="Yuquitas fritas con Huancaina";
+                            ped[num_orden][num_cliente].precio_item=7.00;
+                            break;
+                        }
+                            ///Menu
+                        case 201:{
+                            ped[num_orden][num_cliente].nombre_item="Chaufa de Pollo";
+                            ped[num_orden][num_cliente].precio_item=12.00;
+                            break;
+                        }
+                        case 202:{
+                            ped[num_orden][num_cliente].nombre_item="Chaufa de Carne";
+                            ped[num_orden][num_cliente].precio_item=13.00;
+                            break;
+                        }
+                        case 203:{
+                            ped[num_orden][num_cliente].nombre_item="Chaufa de Mariscos";
+                            ped[num_orden][num_cliente].precio_item=15.00;
+                            break;
+                        }
+                        case 204:{
+                            ped[num_orden][num_cliente].nombre_item="Chaufa Regional";
+                            ped[num_orden][num_cliente].precio_item=13.50;
+                            break;
+                        }
+                        case 205:{
+                            ped[num_orden][num_cliente].nombre_item="Chaufa Especial";
+                            ped[num_orden][num_cliente].precio_item=18.00;
+                            break;
+                        }
+                        case 206:{
+                            ped[num_orden][num_cliente].nombre_item="Aeropuerto";
+                            ped[num_orden][num_cliente].precio_item=17.00;
+                            break;
+                        }
+                        case 207:{
+                            ped[num_orden][num_cliente].nombre_item="Lomo Saltado";
+                            ped[num_orden][num_cliente].precio_item=16.50;
+                            break;
+                        }
+                        case 208:{
+                            ped[num_orden][num_cliente].nombre_item="Tacu Tacu";
+                            ped[num_orden][num_cliente].precio_item=14.50;
+                            break;
+                        }
+                        case 209:{
+                            ped[num_orden][num_cliente].nombre_item="Locro con Cecina";
+                            ped[num_orden][num_cliente].precio_item=15.00;
+                            break;
+                        }
+                        case 210:{
+                            ped[num_orden][num_cliente].nombre_item="Tallarin Saltado";
+                            ped[num_orden][num_cliente].precio_item=18.00;
+                            break;
+                        }
+                        case 301:{
+                            ped[num_orden][num_cliente].nombre_item="Inca Kola 1L";
+                            ped[num_orden][num_cliente].precio_item=4.50;
+                            break;
+                        }
+                        case 302:{
+                            ped[num_orden][num_cliente].nombre_item="Inca Kola 2L";
+                            ped[num_orden][num_cliente].precio_item=6.50;
+                            break;
+                        }
+                        case 303:{
+                            ped[num_orden][num_cliente].nombre_item="Coca Cola 1L";
+                            ped[num_orden][num_cliente].precio_item=5.00;
+                            break;
+                        }
+                        case 304:{
+                            ped[num_orden][num_cliente].nombre_item="Coca Cola 2L";
+                            ped[num_orden][num_cliente].precio_item=7.00;
+                            break;
+                        }
+                        case 305:{
+                            ped[num_orden][num_cliente].nombre_item="Chicha Morada 2L";
+                            ped[num_orden][num_cliente].precio_item=8.00;
+                            break;
+                        }
+                        default:{
+                            break;
+                        }
+                    }
+}
+
+
 void menu_modificar(){
 	cout<<"\nMENU MODIFICAR ORDEN"<<endl;
     cout<<"----------------------------------"<<endl;
@@ -224,8 +340,6 @@ int main(){
     setlocale(LC_ALL, "spanish");
 
     char opcion;//opcion del menu principal
-    int num_cliente = 0;//cuando inicia el programa el cliente numero 1 sera el (0)
-    int num_orden;//el numero del plato de un cliente
     int generar_boleta; //confirmacion de generar boleta
     do{
         system("cls");
@@ -240,122 +354,16 @@ int main(){
                 int  opc_orden;//opcion de terminar o seguir con la orden
                 num_orden=0;
                 version();
-                menu_carta();//abrir el menu de la carta
                 cout<<"Ingrese el nombre del cliente : ";
                 cin>>datos_orden[num_cliente].nombre_cliente;
+
+            	menu_carta();//abrir el menu de la carta
 
                 do{
                     cout<<"\n Inserte codigo de item (0 para terminar la orden): ";
                     fflush(stdin);
                     cin>>opc_orden;
-
-                    switch(opc_orden){
-                        ///Entradas
-                        case 101:{
-                            orden[num_orden][num_cliente].nombre_item="Caldo de Gallina";
-                            orden[num_orden][num_cliente].precio_item=8.00;
-                            break;
-                        }
-                        case 102:{
-                            orden[num_orden][num_cliente].nombre_item="Sopa de Wantan";
-                            orden[num_orden][num_cliente].precio_item=8.00;
-                            break;
-                        }
-                        case 103:{
-                            orden[num_orden][num_cliente].nombre_item="Tequeños";
-                            orden[num_orden][num_cliente].precio_item=5.50;
-                            break;
-                        }
-                        case 104:{
-                            orden[num_orden][num_cliente].nombre_item="Wantan con salsa de Tamarindo";
-                            orden[num_orden][num_cliente].precio_item=6.50;
-                            break;
-                        }
-                        case 105:{
-                            orden[num_orden][num_cliente].nombre_item="Yuquitas fritas con Huancaina";
-                            orden[num_orden][num_cliente].precio_item=7.00;
-                            break;
-                        }
-                            ///Menu
-                        case 201:{
-                            orden[num_orden][num_cliente].nombre_item="Chaufa de Pollo";
-                            orden[num_orden][num_cliente].precio_item=12.00;
-                            break;
-                        }
-                        case 202:{
-                            orden[num_orden][num_cliente].nombre_item="Chaufa de Carne";
-                            orden[num_orden][num_cliente].precio_item=13.00;
-                            break;
-                        }
-                        case 203:{
-                            orden[num_orden][num_cliente].nombre_item="Chaufa de Mariscos";
-                            orden[num_orden][num_cliente].precio_item=15.00;
-                            break;
-                        }
-                        case 204:{
-                            orden[num_orden][num_cliente].nombre_item="Chaufa Regional";
-                            orden[num_orden][num_cliente].precio_item=13.50;
-                            break;
-                        }
-                        case 205:{
-                            orden[num_orden][num_cliente].nombre_item="Chaufa Especial";
-                            orden[num_orden][num_cliente].precio_item=18.00;
-                            break;
-                        }
-                        case 206:{
-                            orden[num_orden][num_cliente].nombre_item="Aeropuerto";
-                            orden[num_orden][num_cliente].precio_item=17.00;
-                            break;
-                        }
-                        case 207:{
-                            orden[num_orden][num_cliente].nombre_item="Lomo Saltado";
-                            orden[num_orden][num_cliente].precio_item=16.50;
-                            break;
-                        }
-                        case 208:{
-                            orden[num_orden][num_cliente].nombre_item="Tacu Tacu";
-                            orden[num_orden][num_cliente].precio_item=14.50;
-                            break;
-                        }
-                        case 209:{
-                            orden[num_orden][num_cliente].nombre_item="Locro con Cecina";
-                            orden[num_orden][num_cliente].precio_item=15.00;
-                            break;
-                        }
-                        case 210:{
-                            orden[num_orden][num_cliente].nombre_item="Tallarin Saltado";
-                            orden[num_orden][num_cliente].precio_item=18.00;
-                            break;
-                        }
-                        case 301:{
-                            orden[num_orden][num_cliente].nombre_item="Inca Kola 1L";
-                            orden[num_orden][num_cliente].precio_item=4.50;
-                            break;
-                        }
-                        case 302:{
-                            orden[num_orden][num_cliente].nombre_item="Inca Kola 2L";
-                            orden[num_orden][num_cliente].precio_item=6.50;
-                            break;
-                        }
-                        case 303:{
-                            orden[num_orden][num_cliente].nombre_item="Coca Cola 1L";
-                            orden[num_orden][num_cliente].precio_item=5.00;
-                            break;
-                        }
-                        case 304:{
-                            orden[num_orden][num_cliente].nombre_item="Coca Cola 2L";
-                            orden[num_orden][num_cliente].precio_item=7.00;
-                            break;
-                        }
-                        case 305:{
-                            orden[num_orden][num_cliente].nombre_item="Chicha Morada 2L";
-                            orden[num_orden][num_cliente].precio_item=8.00;
-                            break;
-                        }
-                        default:{
-                            break;
-                        }
-                    }
+                	menuElegir(opc_orden, num_orden, num_cliente, orden);
 
                     if(opc_orden != 0){
 
@@ -464,120 +472,14 @@ int main(){
                     		case 1:{
                     			int agregar_orden;// poner codigo añadido
                     			int agregarm;//
-                    			
+
+                    			agregarm = datos_orden[bscr].numero_items_datos;
+
                     			cout<<"\n Inserte codigo de item : ";
 			                    fflush(stdin);
 			                    cin >> agregar_orden;
-			                    
-								agregarm = datos_orden[bscr].numero_items_datos;
-								
-			                    switch(agregar_orden){
-			                        ///Entradas
-			                        case 101:{
-			                            orden[agregarm][bscr].nombre_item="Caldo de Gallina";
-			                            orden[agregarm][bscr].precio_item=8.00;
-			                            break;
-			                        }
-			                        case 102:{
-			                            orden[agregarm][bscr].nombre_item="Sopa de Wantan";
-			                            orden[agregarm][bscr].precio_item=8.00;
-			                            break;
-			                        }
-			                        case 103:{
-			                            orden[agregarm][bscr].nombre_item="Tequeños";
-			                            orden[agregarm][bscr].precio_item=5.50;
-			                            break;
-			                        }
-			                        case 104:{
-			                            orden[agregarm][bscr].nombre_item="Wantan con salsa de Tamarindo";
-			                            orden[agregarm][bscr].precio_item=6.50;
-			                            break;
-			                        }
-			                        case 105:{
-			                            orden[agregarm][bscr].nombre_item="Yuquitas fritas con Huancaina";
-			                            orden[agregarm][bscr].precio_item=7.00;
-			                            break;
-			                        }
-			                            ///Menu
-			                        case 201:{
-			                            orden[agregarm][bscr].nombre_item="Chaufa de Pollo";
-			                            orden[agregarm][bscr].precio_item=12.00;
-			                            break;
-			                        }
-			                        case 202:{
-			                            orden[agregarm][bscr].nombre_item="Chaufa de Carne";
-			                            orden[agregarm][bscr].precio_item=13.00;
-			                            break;
-			                        }
-			                        case 203:{
-			                            orden[agregarm][bscr].nombre_item="Chaufa de Mariscos";
-			                            orden[agregarm][bscr].precio_item=15.00;
-			                            break;
-			                        }
-			                        case 204:{
-			                            orden[agregarm][bscr].nombre_item="Chaufa Regional";
-			                            orden[agregarm][bscr].precio_item=13.50;
-			                            break;
-			                        }
-			                        case 205:{
-			                            orden[agregarm][bscr].nombre_item="Chaufa Especial";
-			                            orden[agregarm][bscr].precio_item=18.00;
-			                            break;
-			                        }
-			                        case 206:{
-			                            orden[agregarm][bscr].nombre_item="Aeropuerto";
-			                            orden[agregarm][bscr].precio_item=17.00;
-			                            break;
-			                        }
-			                        case 207:{
-			                            orden[agregarm][bscr].nombre_item="Lomo Saltado";
-			                            orden[agregarm][bscr].precio_item=16.50;
-			                            break;
-			                        }
-			                        case 208:{
-			                            orden[agregarm][bscr].nombre_item="Tacu Tacu";
-			                            orden[agregarm][bscr].precio_item=14.50;
-			                            break;
-			                        }
-			                        case 209:{
-			                            orden[agregarm][bscr].nombre_item="Locro con Cecina";
-			                            orden[agregarm][bscr].precio_item=15.00;
-			                            break;
-			                        }
-			                        case 210:{
-			                            orden[agregarm][bscr].nombre_item="Tallarin Saltado";
-			                            orden[agregarm][bscr].precio_item=18.00;
-			                            break;
-			                        }
-			                        case 301:{
-			                            orden[agregarm][bscr].nombre_item="Inca Kola 1L";
-			                            orden[agregarm][bscr].precio_item=4.50;
-			                            break;
-			                        }
-			                        case 302:{
-			                            orden[agregarm][bscr].nombre_item="Inca Kola 2L";
-			                            orden[agregarm][bscr].precio_item=6.50;
-			                            break;
-			                        }
-			                        case 303:{
-			                            orden[agregarm][bscr].nombre_item="Coca Cola 1L";
-			                            orden[agregarm][bscr].precio_item=5.00;
-			                            break;
-			                        }
-			                        case 304:{
-			                            orden[agregarm][bscr].nombre_item="Coca Cola 2L";
-			                            orden[agregarm][bscr].precio_item=7.00;
-			                            break;
-			                        }
-			                        case 305:{
-			                            orden[agregarm][bscr].nombre_item="Chicha Morada 2L";
-			                            orden[agregarm][bscr].precio_item=8.00;
-			                            break;
-			                        }
-			                        default:{
-			                            break;
-			                        }
-			                    }
+
+                    			menuElegir(agregar_orden, agregarm, bscr, orden);
 			                    
 			                    orden[agregarm][bscr].codigo_item = agregar_orden;
 			                    cout<<"\n Inserte cantidad del item: ";
