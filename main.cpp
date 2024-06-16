@@ -24,19 +24,19 @@ void menu(){
 }//menu principal
 void version(){
     cout<<"Versión "<<1<<"."<<4<<"."<<1<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
-    cout<<"\n\t\t  ADMINISTRADOR DE RESTAURANTES - GIOSTINNI'S RESTAURANT"<<endl<<endl;
+    cout<<"\n\t\t  ADMINISTRADOR DE RESTAURANTES - MACCHIAVELLO'S RESTAURANT"<<endl<<endl;
 }//tipo de version
 void logo(){
-    cout<<"         ____ _           _   _   _       _ _             "<<endl;
-    cout<<"        / ___(_) ___  ___| |_| |_(_)_ __ (_| )___         "<<endl;
-    cout<<"       | |  _| |/ _ \\/ __| __| __| | '_ \\| |// __|        "<<endl;
-    cout<<"       | |_| | | (_) \\__ \\ |_| |_| | | | | | \\__ \\        "<<endl;
-    cout<<"        \\____|_|\\___/|___/\\__|\\__|_|_| |_|_| |___/    _   "<<endl;
-    cout<<"       |  _ \\ ___  ___| |_ __ _ _   _ _ __ __ _ _ __ | |_ "<<endl;
-    cout<<"       | |_) / _ \\/ __| __/ _` | | | | '__/ _` | '_ \\| __|"<<endl;
-    cout<<"       |  _ <  __/\\__ \\ || (_| | |_| | | | (_| | | | | |_ "<<endl;
-    cout<<"       |_| \\_\\___||___/\\__\\__,_|\\__,_|_|  \\__,_|_| |_|\\__|"<<endl<<endl;
-}//logo
+    cout<<"  __  __                _     _                 _ _       _     "<<endl;
+    cout<<" |  \\/  | __ _  ___ ___| |__ (_) __ ___   _____| | | ___ ( )___ "<<endl;
+    cout<<" | |\\/| |/ _` |/ __/ __| '_ \\| |/ _` \\ \\ / / _ \\ | |/ _ \\|// __|"<<endl;
+    cout<<" | |  | | (_| | (_| (__| | | | | (_| |\\ V /  __/ | | (_) | \\__ \\"<<endl;
+    cout<<" |_|  |_|\\__,_|\\___\\___|_| |_|_|\\__,_| \\_/ \\___|_|_|\\___/  |___/"<<endl;
+    cout<<"        |  _ \\ ___  ___| |_ __ _ _   _ _ __ __ _ _ __ | |_ "<<endl;
+    cout<<"        | |_) / _ \\/ __| __/ _` | | | | '__/ _` | '_ \\| __|"<<endl;
+    cout<<"        |  _ <  __/\\__ \\ || (_| | |_| | | | (_| | | | | |_ "<<endl;
+    cout<<"        |_| \\_\\___||___/\\__\\__,_|\\__,_|_|  \\__,_|_| |_|\\__|"<<endl;
+} //logo
 struct orden_menu{
     string nos;
     float pr;
@@ -719,10 +719,10 @@ int main(){
                     if(generar_boleta==1){
                         system("cls");
                         logo();
-                        cout<<"\t\t  GIOSTTINI'S RESTAURANT S.L."<<endl;
+                        cout<<"\t\t  MACCHIAVELLO'S RESTAURANT S.L."<<endl;
                         cout<<"\t\t  Chorrillos - Lima"<<endl;
                         cout<<"\t\t  Telef: 123-4567"<<endl;
-                        cout<<"\t\t  info@giosttinisresutaurant.com"<<endl;
+                        cout<<"\t\t  info@machiavellosresutaurant.com"<<endl;
                         cout<<"-----------------------------------------------------------------"<<endl;
                         cout<<"CLIENTE: "<< datos_orden[bscr].nombre_cliente << endl;
                         cout<<"BOLETA N°: "<< datos_orden[bscr].codigo_cliente<<endl;
@@ -782,10 +782,10 @@ int main(){
 
                     system("cls");
                     logo();
-                    cout<<"\t\t  GIOSTTINI'S RESTAURANT S.L."<<endl;
+                    cout<<"\t\t  MACCHIAVELLO'S RESTAURANT S.L."<<endl;
                     cout<<"\t\t  Chorrillos - Lima"<<endl;
                     cout<<"\t\t  Telef: 123-4567"<<endl;
-                    cout<<"\t\t  info@giosttinisresutaurant.com"<<endl;
+                    cout<<"\t\t  info@macchiavellosresutaurant.com"<<endl;
                     cout<<"-----------------------------------------------------------------"<<endl;
                     cout<<"CLIENTE: "<< datos_orden[bscr].nombre_cliente << endl;
                     cout<<"BOLETA N°: "<< datos_orden[bscr].codigo_cliente<<endl;
