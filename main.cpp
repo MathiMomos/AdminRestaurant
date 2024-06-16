@@ -511,16 +511,23 @@ int main(){
 								int eliminarm;
 								int sacar_id;
 								
-								cout<<"\n Inserte el codigo del item que desee eliminar ( se va eliminar la cantidad de los item) : ";
+								cout<<"\n Inserte el codigo del item que desea eliminar: ";
 								fflush(stdin);
-								cin >> eliminarm ;
+								cin>>eliminarm ;
 								
-								for(int i=0 ; i < datos_orden[bscr].numero_items_datos+1 ; i++){
-									if(eliminarm=orden[i][bscr].codigo_item){
-										sacar_id=i;
+								for(int i=0; i<datos_orden[bscr].numero_items_datos; i++){
+									if(orden[i][bscr].codigo_item==eliminarm){
+									    cout<<"\n Item de código "<<orden[i][bscr].codigo_item<<" eliminado"<<endl;
+									    sacar_id=i;
 									}
 								}
-								
+                    		    for(int j=sacar_id; j<datos_orden[bscr].numero_items_datos; j++) {
+                    		        orden[j][bscr].codigo_item=orden[j+1][bscr].codigo_item;
+                    		        orden[j][bscr].nombre_item=orden[j+1][bscr].nombre_item;
+                    		        orden[j][bscr].precio_item=orden[j+1][bscr].precio_item;
+                    		        orden[j][bscr].cantidad_item=orden[j+1][bscr].cantidad_item;
+                    		    }
+								system("pause");
 							    /*for (int i = sacar_id; i < datos_orden[bscr].numero_items_datos - 1; ++i) {
 							    	orden[i][bscr].codigo_item = orden[i+1][bscr].codigo_item;
 							    	orden[i][bscr].nombre_item = orden[i+1][bscr].nombre_item;
@@ -641,7 +648,7 @@ int main(){
                         cout<<"                                            OP. GRAVADA: S/."<<datos_orden[bscr].costo_total_items*0.82<<endl;
                         cout<<"                                              IGV (18%): S/."<<datos_orden[bscr].costo_total_items*0.18<<endl;
                         cout<<"                                                  TOTAL: S/."<<datos_orden[bscr].costo_total_items<<endl;
-
+                        datos_orden[bscr].costo_total_items=0;
                         system("pause");
                     }else{
                         system("cls");
