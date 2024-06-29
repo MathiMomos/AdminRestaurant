@@ -368,7 +368,8 @@ int main(){
                 do{
                     do{
                         cod_verificador=0;
-                        cout<<"\n Inserte codigo de item (0 para terminar la orden / 1 para elimar el pedido anterior): ";
+                        cout<<"\n (0: Terminar / 1: Eliminar)";
+                        cout<<"\n Inserte codigo de item : ";
                         fflush(stdin);
                         cin>>opc_orden;
                         menuElegir(opc_orden, num_orden, num_cliente, orden);
