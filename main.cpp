@@ -800,14 +800,15 @@ int main(){
                     }
                 }
                 if(opc_buscar==1){
-                	for(int j=bscr; j<10; j++) {
-                		datos_orden[j].codigo_cliente=datos_orden[j+1].codigo_cliente;
-                		datos_orden[j].nombre_cliente=datos_orden[j+1].nombre_cliente;
-                		for(int k=0; k<19; k++){
-                			orden[k][j]=orden[k][j+1];//CASI AAAAAAAAAA
+                	for(int j=bscr; j<num_cliente-1; j++) {
+                		datos_orden[j]=datos_orden[j+1];
+                		for(int k=0; k<20; k++){
+                			orden[k][j]=orden[k][j+1];
                 		}
                 	}
                 	num_cliente=num_cliente-1;
+                	cout<<"Orden eliminada"<<endl;
+                	Sleep(2*1000);
 				}else{
 					system("cls");
                     version();
