@@ -15,16 +15,17 @@ void gotoxy(short x,short y){
     SetConsoleCursorPosition(hStdout,pos);
 }//posicion del programa
 void menu(){
-    cout<<"1. CREAR ORDEN  "<<endl;
-    cout<<"2. MODIFICAR ORDEN  "<<endl;
-    cout<<"3. BUSCAR ORDEN "<<endl;
+    cout<<"1. CREAR ORDEN"<<endl;
+    cout<<"2. MODIFICAR ORDEN"<<endl;
+    cout<<"3. BUSCAR ORDEN"<<endl;
     cout<<"4. GENERAR BOLETA"<<endl;
+    cout<<"5. ELIMINAR ORDEN"<<endl<<endl;
     cout<<"0. SALIR DEL SISTEMA"<<endl<<endl;
 
     cout<<"Ingrese Opcion: ";
 }//menu principal
 void version(){
-    cout<<"Versión "<<1<<"."<<7<<"."<<0<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
+    cout<<"Versión "<<1<<"."<<7<<"."<<2<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
     cout<<"\n\t\t  ADMINISTRADOR DE RESTAURANTES - MACCHIAVELLO'S RESTAURANT"<<endl<<endl;
 }//tipo de version
 void logo(){
@@ -37,7 +38,7 @@ void logo(){
     cout<<"\t\t\t          | |_) / _ \\/ __| __/ _` | | | | '__/ _` | '_ \\| __|"<<endl;
     cout<<"\t\t\t          |  _ <  __/\\__ \\ || (_| | |_| | | | (_| | | | | |_ "<<endl;
     cout<<"\t\t\t          |_| \\_\\___||___/\\__\\__,_|\\__,_|_|  \\__,_|_| |_|\\__|"<<endl;
-	cout<<"\n\t\t\t                            2023 - 2024"<<endl;
+	cout<<"\n\t\t\t                              2023 - 2024"<<endl;
 
 } //logo
 struct orden_menu{
@@ -201,7 +202,7 @@ struct pedido{
     string nombre_item;// nombre del plato
     float precio_item;//precio del plato
 
-}orden[20][10];//el pedido de un cliente y cantidad de clientes
+}orden[20][10];//el pedido de un cliente y cantidad de clientes (indice de cada cliente)
 struct datos_cliente{
     string nombre_cliente;//nombre del cliente
     int codigo_cliente;//codigo del cliente
@@ -342,15 +343,6 @@ void menuElegir(int opc_orden, int num_orden, int num_cliente, pedido ped[][10])
 	}
 }
 
-void menuModificar(){
-	cout<<"\nMENU MODIFICAR ORDEN"<<endl;
-    cout<<"----------------------------------"<<endl;
-    cout<<"1. Agregar el producto"<<endl;
-	cout<<"2. Eliminar producto "<<endl;
-	cout<<"0. Salir del menu modificar"<<endl;
-	cout<<"\n Ingrese la opcion : ";
-}
-
 void menuMostrar(int num_cliente, int num_orden, pedido orden[][10], datos_cliente datos_orden[], int gotoy, int indexmax) {
 	datos_orden[num_cliente].costo_total_items=0;
 	cout<<"---------------------------------------------------------------------------"<<endl;
@@ -375,7 +367,6 @@ int main(){
     setlocale(LC_ALL, "spanish");
 
     char opcion;//opcion del menu principal
-    int generar_boleta; //confirmacion de generar boleta
 	float pago_cliente;// Pago del cliente XD
 	cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
 	logo();
@@ -399,7 +390,7 @@ int main(){
                 do{
                     do{
                         cod_verificador=0;
-                        cout<<"\n(0) para terminar la orden \n(1) para elimar un item \n(2) para mostrar el menu \n Inserte codigo de item: ";
+                        cout<<"\n(0) para terminar la orden \n(1) para elimar un item de la orden\n(2) para mostrar el menu \n Inserte codigo de item a añadir a la orden: ";
                         fflush(stdin);
                         cin>>opc_orden;
                 	    menuElegir(opc_orden, num_orden, num_cliente, orden);
@@ -409,10 +400,10 @@ int main(){
                         orden[num_orden][num_cliente].codigo_item=opc_orden;
 
                     	do {
-                    		cout<<"\nInserte cantidad del item: ";
+                    		cout<<"\nInserte cantidad del item a añadir: ";
                     		cin>>cantidad_item;
                     		if(cantidad_item<=0) {
-                    			cout<<cantidad_item<<" no es un número inválido..."<<endl;
+                    			cout<<cantidad_item<<" no es una cantidad válida..."<<endl;
                     		}
                     	}while(cantidad_item<=0);
                     	orden[num_orden][num_cliente].cantidad_item=cantidad_item;
@@ -426,7 +417,7 @@ int main(){
 						datos_orden[num_cliente].numero_items_datos = num_orden;
                 	}else if(opc_orden==1){
                 		if(datos_orden[num_cliente].numero_items_datos==0){
-                			cout<<"\n\nLa orden esta vacía, cancelando orden..."<<endl;
+                			cout<<"\n\nLa orden esta vacía, no puedes eliminar nada, cancelando orden..."<<endl;
                     		opc_orden=0;
                     		Sleep(2*1000);
 						}else{
@@ -435,7 +426,7 @@ int main(){
 	                        version();
 							menuMostrar(num_cliente, num_orden, orden, datos_orden, 7, 0);
 
-	                		cout<<"\nIngrese el código del item que desea eliminar: ";
+	                		cout<<"\nIngrese el código del item que desea eliminar de la orden: ";
 	                		cin>>codigo_eliminar;
 
 	                		while(fine!=0 && datos_orden[num_cliente].numero_items_datos!=cont_elim){
@@ -448,7 +439,7 @@ int main(){
 							}
 
 							if(fine!=0){
-								cout<<"\n\nEl codigo de item no ha sido encontrado..." << endl;
+								cout<<"\n\nEl codigo del item no ha sido encontrado..." << endl;
 								Sleep(2*1000);
 								system("cls");
 								version();
@@ -470,7 +461,7 @@ int main(){
 						}
                     }else if(opc_orden==0){
                     	if(datos_orden[num_cliente].numero_items_datos==0){
-                    		cout<<"\n\nLa orden esta vacia, cancelando orden..."<<endl;
+                    		cout<<"\n\nLa orden esta vacia, no puedes terminarla, cancelando orden..."<<endl;
                     		opc_orden=0;
                     		Sleep(2*1000);
 						}else{
@@ -497,7 +488,6 @@ int main(){
 						}else {
 							menuMostrar(num_cliente, num_orden, orden, datos_orden, 7, 0);
 						}
-
 					}// Fin IF
                 }while(opc_orden!=0);
                 break;
@@ -506,7 +496,7 @@ int main(){
                 system("cls");
                 short opcm;//opcion de modificar
                 int codice;//codigo que desee buscar
-                int bscr ;//el dato proveniente del codigo
+                int bscr;//el dato proveniente del codigo
                 int opc_buscar=0;//opcion de continuar o seguir al momento de recibir la boleta
                 system("cls");
             	menu_modo=1;
@@ -529,32 +519,29 @@ int main(){
                         opc_buscar = 1;
                     }
                 }
-
                 if(opc_buscar== 1){
                     do{
-
                     	system("cls");
 	                    version();
                     	menuMostrar(bscr, datos_orden[bscr].numero_items_datos, orden, datos_orden, 7, 0);
-						menuModificar();
+						cout<<"\n(0) para terminar la  modificacion de la orden \n(1) para agregar un item \n(2) para elimar un item  \n Inserte la opcion : ";
         				fflush(stdin);
         				cin>>opcm;
 
                     	switch(opcm){
                     		case 1:{
                     			int agregar_orden;// poner codigo añadido
-                    			int agregarm;//
-
-                    			agregarm = datos_orden[bscr].numero_items_datos;
+                    			int agregarm=datos_orden[bscr].numero_items_datos;
                                 do {
                                     cod_verificador=0;
-                                    cout<<"\n Inserte codigo de item (0 para terminar la orden): ";
+                                    cout<<"\n Inserte codigo de item : ";
                                     fflush(stdin);
                                     cin >> agregar_orden;
                                     menuElegir(agregar_orden, agregarm, bscr, orden);
+
                                 }while(cod_verificador==1);
 
-			                    orden[agregarm][bscr].codigo_item = agregar_orden;
+			                    orden[agregarm][bscr].codigo_item=agregar_orden;
 
                     			do {
                     				cout<<"\nInserte cantidad del item: ";
@@ -566,13 +553,13 @@ int main(){
                     			}while(cantidad_item<=0);
                     			orden[agregarm][bscr].cantidad_item=cantidad_item;
 
-			                    datos_orden[bscr].costo_total_items = 0;
+			                    datos_orden[bscr].costo_total_items=0;
 			                    system("cls");
 			                    fflush(stdin);
 			                    version();
 		                        cout<<"\t\t\t\tORDEN MODIFICADA"<<endl;
                     			menuMostrar(bscr, datos_orden[bscr].numero_items_datos, orden, datos_orden, 8, 1);
-			                    datos_orden[bscr].numero_items_datos = 1 + agregarm;
+			                    datos_orden[bscr].numero_items_datos=1+agregarm;
 			                    system ("pause");
 								break;
 							}
@@ -586,8 +573,9 @@ int main(){
 								int opc_el=1;
 								while(opc_el!=0 && datos_orden[bscr].numero_items_datos!=sacar_id){
 	                				if(orden[sacar_id][bscr].codigo_item==eliminarm){
-										cout<<"\nItem de código "<<orden[sacar_id][bscr].codigo_item<<" eliminado"<<endl;
+										cout<<"\n\t\tItem de código "<<orden[sacar_id][bscr].codigo_item<<" eliminado"<<endl;
 										opc_el=0;
+										system("pause");
 									}
 									sacar_id=sacar_id+1;
 								}
@@ -624,16 +612,13 @@ int main(){
 
 						}//fin switch
 					}while( opcm!=0);//fin do modificar
-
-                }else if(opc_buscar == 0) {
+                }else if(opc_buscar==0) {
                     system("cls");
                     version();
                     cout<<"\n\nCODIGO INGRESADO NO EXISTENTE... REGRESANDO AL MENU"<<endl;
                     Sleep(2*1000);
                 }
-
-
-             	  break;
+            	break;
             }//fin case 2
             case '3':{
                 int codice;//codigo que desee buscar
@@ -656,20 +641,20 @@ int main(){
                 for(int i=0 ; i<num_cliente; i++){
                     if(codice==datos_orden[i].codigo_cliente){
                         bscr=i;
-                        opc_buscar = 1;
+                        opc_buscar=1;
                     }
                 }
 
-                if(opc_buscar== 1){
+                if(opc_buscar==1){
                     system("cls");
                     version();
                     cout<<"\t\t\tCODIGO DE CLIENTE ENCONTRADO"<<endl;
-                    cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
+                	cout<<"---------------------------------------------------------------------------"<<endl;
                     cout<<"Nombre del cliente: "<< datos_orden[bscr].nombre_cliente << endl;
                     cout<<"Codigo: "<< datos_orden[bscr].codigo_cliente<<endl;
                     cout<<"Numero de pedidos de la orden: "<<datos_orden[bscr].numero_items_datos<<endl;
                     menuMostrar(bscr, datos_orden[bscr].numero_items_datos, orden, datos_orden, 12, 0);
-                    cout<<endl<<"¿Desea generar la boleta de esta orden? (SI: 1/NO: 0): "; cin>>generar_boleta;
+                    /*cout<<endl<<"¿Desea generar la boleta de esta orden? (SI: 1/NO: 0): "; cin>>generar_boleta;
                     if(generar_boleta==1){
                     	do {
                     		cout<<"Ingresar efectivo con el que pagará el cliente: "; cin>>pago_cliente;
@@ -710,8 +695,8 @@ int main(){
                         version();
                         cout<<"\n\nREGRESANDO AL MENU..."<<endl;
                         Sleep(2*1000);
-                    }
-
+                    }*/
+					system("pause");
                 }else if(opc_buscar==0){
                     system("cls");
                     version();
@@ -719,13 +704,13 @@ int main(){
                     Sleep(2*1000);
                 }
                 break;
-            }
+            }//FIN CASE 3
             case '4':{
                 int codice=0;//codigo registrado
                 int bscr , opc_buscar=0;
                 system("cls");
                 version();
-                cout<<"\t\t\tCODIGO DE CLIENTE ENCONTRADO"<<endl;
+                cout<<""<<endl;
                 cout<<"|--------------------|------------------|"<<endl;
                 cout<<"| CODIGO DEL CLIENTE | NOMBRE CLIENTE   |"<<endl;
                 cout<<"|--------------------|------------------|"<<endl;
@@ -735,52 +720,100 @@ int main(){
                     gotoxy(40, i+8);cout<<"| ";
                 }
                 cout<<endl<<"|--------------------|------------------|"<<endl;
-                cout<<endl<<"Generar la boleta de esta orden : ";
+                cout<<endl<<"Inserte el codigo de la orden cual desee generar boleta: ";
                 cin >> codice;
                 for(int i=0 ; i<num_cliente; i++){
                     if(codice==datos_orden[i].codigo_cliente){
                         bscr=i;
-                        opc_buscar =1;
+                        opc_buscar=1;
                     }
                 }
-				do {
-					cout<<"Ingresar efectivo con el que pagará el cliente: "; cin>>pago_cliente;
-					if(datos_orden[bscr].costo_total_items>pago_cliente) {
-						cout<<"Monto insuficiente"<<endl;
-					}
-				}while(datos_orden[bscr].costo_total_items>pago_cliente);
+                if(opc_buscar==1){
+	                do {
+						cout<<"Ingresar efectivo con el que pagará el cliente: "; cin>>pago_cliente;
+						if(datos_orden[bscr].costo_total_items>pago_cliente) {
+							cout<<"Monto insuficiente"<<endl;
+						}
+					}while(datos_orden[bscr].costo_total_items>pago_cliente);
 
-                system("cls");
-                cout<<"\t\t  MACCHIAVELLO'S RESTAURANT S.L."<<endl;
-            	cout<<"\t\t  RUC No.: 17732301232"<<endl;
-                cout<<"\t\t  Chorrillos - Lima"<<endl;
-                cout<<"\t\t  Telef: 123-4567"<<endl;
-                cout<<"\t\t  info@macchiavellosresutaurant.com"<<endl;
-            	cout<<"\t\t BOLETA DE VENTA ELECTRONICA"<<endl;
-                cout<<"-----------------------------------------------------------------"<<endl;
-                cout<<"CLIENTE: "<< datos_orden[bscr].nombre_cliente << endl;
-                cout<<"BOLETA N°: "<< datos_orden[bscr].codigo_cliente<<endl;
-                cout<<"-----------------------------------------------------------------"<<endl;
-                cout<<" UDS   DESCRIPCION                          PREC/UDS     COSTO"<<endl;
-                cout<<"-----------------------------------------------------------------"<<endl;
-                for(int i=0; i<datos_orden[bscr].numero_items_datos; i++){
-                    gotoxy(0, i+20);cout<<" x"<<orden[i][bscr].cantidad_item;
-                    gotoxy(7, i+20);cout<<orden[i][bscr].nombre_item;
-                    gotoxy(44, i+20);cout<<"S/."<<orden[i][bscr].precio_item;
-                    gotoxy(57, i+20);cout<<"S/."<<orden[i][bscr].precio_item * orden[i][bscr].cantidad_item<<"\n";
-                }
-                cout<<"-----------------------------------------------------------------"<<endl;
-                cout<<"                                            OP. GRAVADA: S/"<<datos_orden[bscr].costo_total_items*0.82<<endl;
-                cout<<"                                              IGV (18%): S/"<<datos_orden[bscr].costo_total_items*0.18<<endl;
-                cout<<"                                                  TOTAL: S/"<<datos_orden[bscr].costo_total_items<<endl;
-            	cout<<"                                      PAGO CON EFECTIVO: S/"<<pago_cliente<<endl;
-            	cout<<"                                                 VUELTO: S/"<<pago_cliente-datos_orden[bscr].costo_total_items<<endl;
+	                system("cls");
+	                cout<<endl<<endl<<endl<<endl<<"\t\t  MACCHIAVELLO'S RESTAURANT S.L."<<endl;
+	            	cout<<"\t\t  RUC No.: 17732301232"<<endl;
+	                cout<<"\t\t  Chorrillos - Lima"<<endl;
+	                cout<<"\t\t  Telef: 123-4567"<<endl;
+	                cout<<"\t\t  info@macchiavellosresutaurant.com"<<endl;
+	            	cout<<"\t\t BOLETA DE VENTA ELECTRONICA"<<endl;
+	                cout<<"-----------------------------------------------------------------"<<endl;
+	                cout<<"CLIENTE: "<< datos_orden[bscr].nombre_cliente << endl;
+	                cout<<"BOLETA N°: "<< datos_orden[bscr].codigo_cliente<<endl;
+	                cout<<"-----------------------------------------------------------------"<<endl;
+	                cout<<" UDS   DESCRIPCION                          PREC/UDS     COSTO"<<endl;
+	                cout<<"-----------------------------------------------------------------"<<endl;
+	                for(int i=0; i<datos_orden[bscr].numero_items_datos; i++){
+	                    gotoxy(0, i+12);cout<<" x"<<orden[i][bscr].cantidad_item;
+	                    gotoxy(7, i+12);cout<<orden[i][bscr].nombre_item;
+	                    gotoxy(44, i+12);cout<<"S/."<<orden[i][bscr].precio_item;
+	                    gotoxy(57, i+12);cout<<"S/."<<orden[i][bscr].precio_item * orden[i][bscr].cantidad_item<<"\n";
+	                }
+	                cout<<"-----------------------------------------------------------------"<<endl;
+	                cout<<"                                            OP. GRAVADA: S/"<<datos_orden[bscr].costo_total_items*0.82<<endl;
+	                cout<<"                                              IGV (18%): S/"<<datos_orden[bscr].costo_total_items*0.18<<endl;
+	                cout<<"                                                  TOTAL: S/"<<datos_orden[bscr].costo_total_items<<endl;
+	            	cout<<"                                      PAGO CON EFECTIVO: S/"<<pago_cliente<<endl;
+	            	cout<<"                                                 VUELTO: S/"<<pago_cliente-datos_orden[bscr].costo_total_items<<endl;
 
-                system("pause");
+	                system("pause");
+	                system("cls");
+	                version();
+	                cout<<"\n\nREGRESANDO AL MENU..."<<endl;
+	                Sleep(2*1000);
+				}else{
+					system("cls");
+                    version();
+                    cout<<"\n\nCODIGO INGRESADO NO EXISTENTE... REGRESANDO AL MENU"<<endl;
+                    Sleep(2*1000);
+				}
+                break;
+            }
+        	case '5':{
+        	int codice=0;//codigo registrado
+                int bscr , opc_buscar=0;
                 system("cls");
                 version();
-                cout<<"\n\nREGRESANDO AL MENU..."<<endl;
-                Sleep(2*1000);
+                cout<<""<<endl;
+                cout<<"|--------------------|------------------|"<<endl;
+                cout<<"| CODIGO DEL CLIENTE | NOMBRE CLIENTE   |"<<endl;
+                cout<<"|--------------------|------------------|"<<endl;
+                for(int i=0 ; i<num_cliente; i++){
+                    gotoxy(0, i+8);cout<<"| "<<datos_orden[i].codigo_cliente;
+                    gotoxy(21, i+8);cout<<"| "<<datos_orden[i].nombre_cliente<<endl;
+                    gotoxy(40, i+8);cout<<"| ";
+                }
+                cout<<endl<<"|--------------------|------------------|"<<endl;
+                cout<<endl<<"Inserte el codigo de la orden que desea eliminar: ";
+            	fflush(stdin);
+                cin>>codice;
+                for(int i=0 ; i<num_cliente; i++){
+                    if(codice==datos_orden[i].codigo_cliente){
+                        bscr=i;
+                        opc_buscar=1;
+                    }
+                }
+                if(opc_buscar==1){
+                	for(int j=bscr; j<10; j++) {
+                		datos_orden[j].codigo_cliente=datos_orden[j+1].codigo_cliente;
+                		datos_orden[j].nombre_cliente=datos_orden[j+1].nombre_cliente;
+                		for(int k=0; k<19; k++){
+                			orden[k][j]=orden[k][j+1];//CASI AAAAAAAAAA
+                		}
+                	}
+                	num_cliente=num_cliente-1;
+				}else{
+					system("cls");
+                    version();
+                    cout<<"\n\nCODIGO INGRESADO NO EXISTENTE... REGRESANDO AL MENU"<<endl;
+                    Sleep(2*1000);
+				}
                 break;
             }
             case '0':{
