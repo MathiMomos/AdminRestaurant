@@ -26,7 +26,7 @@ void menu(){
 }//menu principal
 void version(){
     cout<<"Versión "<<1<<"."<<7<<"."<<2<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
-    cout<<"\n\t\t  ADMINISTRADOR DE RESTAURANTES - MACCHIAVELLO'S RESTAURANT"<<endl<<endl;
+    cout<<"\n\t\t            ADMINISTRADOR DE RESTAURANTES - MACCHIAVELLO'S RESTAURANT"<<endl<<endl;
 }//tipo de version
 void logo(){
     cout<<"\t\t\t    __  __                _     _                 _ _       _     "<<endl;
@@ -49,9 +49,9 @@ void menuCarta(){
     int id;
     string nombreplato;
     float precio;
-    cout<<"                                   => Menu de platos <="<<endl;
-    cout<<"                    ID    NOMB. ITEM                        PRECIO"<<endl;
-    cout<<"                  ------------------------------------------------------"<<endl;
+    cout<<"                                               => Menu de platos <="<<endl<<endl;
+    cout<<"                                 ID    NOMB. ITEM                        PRECIO"<<endl;
+    cout<<"                              -----------------------------------------------------"<<endl;
     for(int i=1; i<=5;i++){
 
         switch(i){
@@ -85,11 +85,11 @@ void menuCarta(){
         id=i+100;
         c[i].nos=nombreplato;
         c[i].pr=precio;
-        gotoxy(20, i+6);cout<<id;
+        gotoxy(33, i+7);cout<<id;
         cout<<"   "<<c[i].nos;
-        gotoxy(60, i+6);cout<<"S/."<<c[i].pr<<endl;
+        gotoxy(73, i+7);cout<<"S/."<<c[i].pr<<endl;
     }
-    cout<<"                  ------------------------------------------------------"<<endl;
+    cout<<"                              -----------------------------------------------------"<<endl;
     for(int i=1; i<=10;i++){
         id=i;
         switch(id){
@@ -148,12 +148,12 @@ void menuCarta(){
         id=i+200;
         c[i].nos=nombreplato;
         c[i].pr=precio;
-        gotoxy(20, i+12);cout<<id;
+        gotoxy(33, i+13);cout<<id;
         cout<<"   "<<c[i].nos;
-        gotoxy(60, i+12);cout<<"S/."<<c[i].pr<<endl;
+        gotoxy(73, i+13);cout<<"S/."<<c[i].pr<<endl;
 
     }
-    cout<<"                  ------------------------------------------------------"<<endl;
+    cout<<"                              -----------------------------------------------------"<<endl;
     for(int i=1; i<=5;i++){
         id=i;
         switch(id){
@@ -189,12 +189,11 @@ void menuCarta(){
         id=i+300;
         c[i].nos=nombreplato;
         c[i].pr=precio;
-        gotoxy(20, i+23);cout<<id;
+        gotoxy(33, i+24);cout<<id;
         cout<<"   "<<c[i].nos;
-        gotoxy(60, i+23);cout<<"S/."<<c[i].pr<<endl;
+        gotoxy(73, i+24);cout<<"S/."<<c[i].pr<<endl;
     }
-    cout<<"                  ------------------------------------------------------"<<endl;
-
+    cout<<"                              -----------------------------------------------------"<<endl<<endl;
 }//menu de las carta de los platos
 struct pedido{
     int codigo_item;//ID del plato
@@ -524,7 +523,7 @@ int main(){
                     	system("cls");
 	                    version();
                     	menuMostrar(bscr, datos_orden[bscr].numero_items_datos, orden, datos_orden, 7, 0);
-						cout<<"\n(0) para terminar la  modificacion de la orden \n(1) para agregar un item \n(2) para elimar un item  \n Inserte la opcion : ";
+						cout<<"\n(0) para terminar la  modificacion de la orden \n(1) para agregar un item \n(2) para mostrar la carta \n(3) para elimar un item \n \n Inserte la opcion : ";
         				fflush(stdin);
         				cin>>opcm;
 
@@ -563,7 +562,15 @@ int main(){
 			                    system ("pause");
 								break;
 							}
-							case 2:{
+                            case 2:{
+                            system("cls");
+                            version();
+                            menuCarta();//fin_if
+                            system("pause");
+                            system("cls");
+                            break;
+                            }
+							case 3:{
                     			int eliminarm;
 								int sacar_id=0;
 
@@ -737,30 +744,31 @@ int main(){
 					}while(datos_orden[bscr].costo_total_items>pago_cliente);
 
 	                system("cls");
-	                cout<<endl<<endl<<endl<<endl<<"\t\t  MACCHIAVELLO'S RESTAURANT S.L."<<endl;
-	            	cout<<"\t\t  RUC No.: 17732301232"<<endl;
-	                cout<<"\t\t  Chorrillos - Lima"<<endl;
-	                cout<<"\t\t  Telef: 123-4567"<<endl;
-	                cout<<"\t\t  info@macchiavellosresutaurant.com"<<endl;
-	            	cout<<"\t\t BOLETA DE VENTA ELECTRONICA"<<endl;
-	                cout<<"-----------------------------------------------------------------"<<endl;
-	                cout<<"CLIENTE: "<< datos_orden[bscr].nombre_cliente << endl;
-	                cout<<"BOLETA N°: "<< datos_orden[bscr].codigo_cliente<<endl;
-	                cout<<"-----------------------------------------------------------------"<<endl;
-	                cout<<" UDS   DESCRIPCION                          PREC/UDS     COSTO"<<endl;
-	                cout<<"-----------------------------------------------------------------"<<endl;
-	                for(int i=0; i<datos_orden[bscr].numero_items_datos; i++){
-	                    gotoxy(0, i+12);cout<<" x"<<orden[i][bscr].cantidad_item;
-	                    gotoxy(7, i+12);cout<<orden[i][bscr].nombre_item;
-	                    gotoxy(44, i+12);cout<<"S/."<<orden[i][bscr].precio_item;
-	                    gotoxy(57, i+12);cout<<"S/."<<orden[i][bscr].precio_item * orden[i][bscr].cantidad_item<<"\n";
-	                }
-	                cout<<"-----------------------------------------------------------------"<<endl;
-	                cout<<"                                            OP. GRAVADA: S/"<<datos_orden[bscr].costo_total_items*0.82<<endl;
-	                cout<<"                                              IGV (18%): S/"<<datos_orden[bscr].costo_total_items*0.18<<endl;
-	                cout<<"                                                  TOTAL: S/"<<datos_orden[bscr].costo_total_items<<endl;
-	            	cout<<"                                      PAGO CON EFECTIVO: S/"<<pago_cliente<<endl;
-	            	cout<<"                                                 VUELTO: S/"<<pago_cliente-datos_orden[bscr].costo_total_items<<endl;
+                    system("color f0");
+                    logo();
+                    cout<<"\t\t                           MACCHIAVELLO'S RESTAURANT S.L."<<endl;
+                    cout<<"\t\t                           RUC No.: 17732301232"<<endl;
+                    cout<<"\t\t                           Chorrillos - Lima"<<endl;
+                    cout<<"\t\t                           Telef: 123-4567"<<endl;
+                    cout<<"\t\t                           info@macchiavellosresutaurant.com"<<endl;
+                    cout<<"                           -----------------------------------------------------------------"<<endl;
+                    cout<<"                           CLIENTE: "<< datos_orden[bscr].nombre_cliente << endl;
+                    cout<<"                           BOLETA N°: "<< datos_orden[bscr].codigo_cliente<<endl;
+                    cout<<"                           -----------------------------------------------------------------"<<endl;
+                    cout<<"                            UDS   DESCRIPCION                          PREC/UDS     COSTO"<<endl;
+                    cout<<"                           -----------------------------------------------------------------"<<endl;
+                    for(int i=0; i<datos_orden[bscr].numero_items_datos; i++){
+                        gotoxy(27, i+22);cout<<" x"<<orden[i][bscr].cantidad_item;
+                        gotoxy(34, i+22);cout<<orden[i][bscr].nombre_item;
+                        gotoxy(71, i+22);cout<<"S/."<<orden[i][bscr].precio_item;
+                        gotoxy(84, i+22);cout<<"S/."<<orden[i][bscr].precio_item * orden[i][bscr].cantidad_item<<"\n";
+                    }
+                    cout<<"                           -----------------------------------------------------------------"<<endl;
+                    cout<<"                                                                      OP. GRAVADA: S/."<<datos_orden[bscr].costo_total_items*0.82<<endl;
+                    cout<<"                                                                        IGV (18%): S/."<<datos_orden[bscr].costo_total_items*0.18<<endl;
+                    cout<<"                                                                            TOTAL: S/."<<datos_orden[bscr].costo_total_items<<endl;
+	            	cout<<"                                                                PAGO CON EFECTIVO: S/."<<pago_cliente<<endl;
+	            	cout<<"                                                                           VUELTO: S/."<<pago_cliente-datos_orden[bscr].costo_total_items<<endl;
 
 	                system("pause");
 	                system("cls");
