@@ -955,7 +955,7 @@ int main(){
                 return 0;
             }
             default:{
-                cout<<"\n\n Opcion Invalida\n\n Reiniciando..."<<endl;
+                cout<<"\n\n Opcion Inválida\n\n Reiniciando..."<<endl;
                 Sleep(2*1000);
                 break;
             }
