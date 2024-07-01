@@ -695,12 +695,14 @@ int main(){
                 if(opc_buscar==1){
                     system("cls");
                     version();
-                    cout<<"\t\t\tCODIGO DE CLIENTE ENCONTRADO"<<endl;
-                	cout<<"---------------------------------------------------------------------------"<<endl;
-                    cout<<"Nombre del cliente: "<< datos_orden[bscr].nombre_cliente << endl;
-                    cout<<"Codigo: "<< datos_orden[bscr].codigo_cliente<<endl;
-                    cout<<"Numero de pedidos de la orden: "<<datos_orden[bscr].numero_items_datos<<endl;
+                    cout<<"\t\t\t\t\t    CODIGO DE CLIENTE ENCONTRADO"<<endl;
+                	cout<<"\t\t   ---------------------------------------------------------------------------"<<endl;
+                    cout<<"\t\t    Cliente: "<< datos_orden[bscr].nombre_cliente << endl;
+                    cout<<"\t\t    Codigo: "<< datos_orden[bscr].codigo_cliente<<endl;
+                    cout<<"\t\t    Numero de Ordenes: "<<datos_orden[bscr].numero_items_datos<<endl;
                     menuMostrar(bscr, datos_orden[bscr].numero_items_datos, orden, datos_orden, 12, 0);
+                    cout<<endl;
+                    cout<<endl;
                     /*cout<<endl<<"¿Desea generar la boleta de esta orden? (SI: 1/NO: 0): "; cin>>generar_boleta;
                     if(generar_boleta==1){
                     	do {
@@ -812,6 +814,7 @@ int main(){
 
 	                system("pause");
 	                system("cls");
+                    system("color 70");
 	                version();
 	                cout<<"\n\nREGRESANDO AL MENU..."<<endl;
 	                Sleep(2*1000);
