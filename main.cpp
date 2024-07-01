@@ -749,7 +749,7 @@ int main(){
                 }else if(opc_buscar==0){
                     system("cls");
                     version();
-                    cout<<"\n\n Codigo no Existente\n\n Regresando al Menu Principal"<<endl;
+                    cout<<"\n\n Codigo no Existente\n\n Regresando al Menu Principal..."<<endl;
                     Sleep(2*1000);
                 }
                 break;
@@ -759,17 +759,16 @@ int main(){
                 int bscr , opc_buscar=0;
                 system("cls");
                 version();
-                cout<<""<<endl;
-                cout<<"|--------------------|------------------|"<<endl;
-                cout<<"| CODIGO DEL CLIENTE | NOMBRE CLIENTE   |"<<endl;
-                cout<<"|--------------------|------------------|"<<endl;
+                cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
+                cout<<"\t\t\t\t    |       CODIGO       |      CLIENTE     |"<<endl;
+                cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
                 for(int i=0 ; i<num_cliente; i++){
-                    gotoxy(0, i+8);cout<<"| "<<datos_orden[i].codigo_cliente;
-                    gotoxy(21, i+8);cout<<"| "<<datos_orden[i].nombre_cliente<<endl;
-                    gotoxy(40, i+8);cout<<"| ";
+                    gotoxy(36, i+7);cout<<"|        "<<datos_orden[i].codigo_cliente;
+                    gotoxy(57, i+7);cout<<"|       "<<datos_orden[i].nombre_cliente<<endl;
+                    gotoxy(76, i+7);cout<<"| ";
                 }
-                cout<<endl<<"|--------------------|------------------|"<<endl;
-                cout<<endl<<"Inserte el codigo de la orden cual desee generar boleta: ";
+                cout<<endl<<"\t\t\t\t    +--------------------+------------------+"<<endl;
+                cout<<endl<<" Codigo de Orden: ";
                 cin >> codice;
                 for(int i=0 ; i<num_cliente; i++){
                     if(codice==datos_orden[i].codigo_cliente){
@@ -779,9 +778,9 @@ int main(){
                 }
                 if(opc_buscar==1){
 	                do {
-						cout<<"Ingresar efectivo con el que pagará el cliente: "; cin>>pago_cliente;
+						cout<<"\n Pago: "; cin>>pago_cliente;
 						if(datos_orden[bscr].costo_total_items>pago_cliente) {
-							cout<<"Monto insuficiente"<<endl;
+							cout<<"\n Pago Insuficiente"<<endl;
 						}
 					}while(datos_orden[bscr].costo_total_items>pago_cliente);
 
@@ -808,20 +807,20 @@ int main(){
                     cout<<"                           -----------------------------------------------------------------"<<endl;
                     cout<<"                                                                      OP. GRAVADA: S/."<<datos_orden[bscr].costo_total_items*0.82<<endl;
                     cout<<"                                                                        IGV (18%): S/."<<datos_orden[bscr].costo_total_items*0.18<<endl;
-                    cout<<"                                                                            TOTAL: S/."<<datos_orden[bscr].costo_total_items<<endl;
-	            	cout<<"                                                                PAGO CON EFECTIVO: S/."<<pago_cliente<<endl;
+                    cout<<"                                                                    TOTAL A PAGAR: S/."<<datos_orden[bscr].costo_total_items<<endl;
+	            	cout<<"                                                                             PAGO: S/."<<pago_cliente<<endl;
 	            	cout<<"                                                                           VUELTO: S/."<<pago_cliente-datos_orden[bscr].costo_total_items<<endl;
 
 	                system("pause");
 	                system("cls");
                     system("color 70");
 	                version();
-	                cout<<"\n\nREGRESANDO AL MENU..."<<endl;
+	                cout<<"\n\nRegresando al Menu Principal..."<<endl;
 	                Sleep(2*1000);
 				}else{
 					system("cls");
                     version();
-                    cout<<"\n\nCODIGO INGRESADO NO EXISTENTE... REGRESANDO AL MENU"<<endl;
+                    cout<<"\n\n Codigo no Existente\n\n Regresando al Menu Principal..."<<endl;
                     Sleep(2*1000);
 				}
                 break;
@@ -831,17 +830,16 @@ int main(){
                 int bscr , opc_buscar=0;
                 system("cls");
                 version();
-                cout<<""<<endl;
-                cout<<"|--------------------|------------------|"<<endl;
-                cout<<"| CODIGO DEL CLIENTE | NOMBRE CLIENTE   |"<<endl;
-                cout<<"|--------------------|------------------|"<<endl;
+                cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
+                cout<<"\t\t\t\t    |       CODIGO       |      CLIENTE     |"<<endl;
+                cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
                 for(int i=0 ; i<num_cliente; i++){
-                    gotoxy(0, i+8);cout<<"| "<<datos_orden[i].codigo_cliente;
-                    gotoxy(21, i+8);cout<<"| "<<datos_orden[i].nombre_cliente<<endl;
-                    gotoxy(40, i+8);cout<<"| ";
+                    gotoxy(36, i+7);cout<<"|        "<<datos_orden[i].codigo_cliente;
+                    gotoxy(57, i+7);cout<<"|       "<<datos_orden[i].nombre_cliente<<endl;
+                    gotoxy(76, i+7);cout<<"| ";
                 }
-                cout<<endl<<"|--------------------|------------------|"<<endl;
-                cout<<endl<<"Inserte el codigo de la orden que desea eliminar: ";
+                cout<<endl<<"\t\t\t\t    +--------------------+------------------+"<<endl;
+                cout<<endl<<" Codigo de Orden: ";
             	fflush(stdin);
                 cin>>codice;
                 for(int i=0 ; i<num_cliente; i++){
@@ -858,12 +856,12 @@ int main(){
                 		}
                 	}
                 	num_cliente=num_cliente-1;
-                	cout<<"Orden eliminada"<<endl;
+                	cout<<" Orden Eliminada"<<endl;
                 	Sleep(2*1000);
 				}else{
 					system("cls");
                     version();
-                    cout<<"\n\nCODIGO INGRESADO NO EXISTENTE... REGRESANDO AL MENU"<<endl;
+                    cout<<"\n\n Codigo no Existente\n\n Regresando al Menu Principal..."<<endl;
                     Sleep(2*1000);
 				}
                 break;
@@ -871,12 +869,12 @@ int main(){
             case '0':{
                 system("cls");
                 version();
-                cout<<"\n\nGRACIAS POR USAR....CERRANDO";
+                cout<<"\n\n Cerrando...";
                 Sleep(2*1000);
                 return 0;
             }
             default:{
-                cout<<"\n\nERROR...OPCION NO VALIDA...REGRESANDO"<<endl;
+                cout<<"\n\n Opcion Invalida\n\n Reiniciando..."<<endl;
                 Sleep(2*1000);
                 break;
             }
