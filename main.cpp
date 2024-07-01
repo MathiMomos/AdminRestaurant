@@ -5,6 +5,7 @@
 #include <time.h>
 #include <string>
 #include <clocale>
+#include <fstream>
 
 using namespace std;
 
@@ -110,7 +111,7 @@ void menuCarta(){
                 break;
             }
             case 2:{
-                nombreplato= "Sopa de Wantan";
+                nombreplato= "Sopa de Wantán";
                 precio =8.00;
                 break;
             }
@@ -120,12 +121,12 @@ void menuCarta(){
                 break;
             }
             case 4:{
-                nombreplato="Wantan con salsa de Tamarindo";
+                nombreplato="Wantán c/ salsa Tamarindo";
                 precio =6.50;
                 break;
             }
             case 5:{
-                nombreplato="Yuquitas fritas con Huancaina";
+                nombreplato="Yucas fritas c/ Huancaína";
                 precio =7.00;
                 break;
             }
@@ -199,7 +200,7 @@ void menuCarta(){
                 break;
             }
             case 10:{
-                nombreplato="Tallarin Saltado";
+                nombreplato="Tallarín Saltado";
                 precio = 18.00;
                 break;
             }
@@ -290,22 +291,22 @@ void menuElegir(int opc_orden, int num_orden, int num_cliente, pedido ped[][10])
         break;
     }
     case 102:{
-        ped[num_orden][num_cliente].nombre_item="Sopa de Wantan";
+        ped[num_orden][num_cliente].nombre_item="Sopa de Wantán";
         ped[num_orden][num_cliente].precio_item=8.00;
         break;
     }
     case 103:{
-        ped[num_orden][num_cliente].nombre_item="Teque os";
+        ped[num_orden][num_cliente].nombre_item="Tequeños";
         ped[num_orden][num_cliente].precio_item=5.50;
         break;
     }
     case 104:{
-        ped[num_orden][num_cliente].nombre_item="Wantan con salsa de Tamarindo";
+        ped[num_orden][num_cliente].nombre_item="Wantán c/ salsa Tamarindo";
         ped[num_orden][num_cliente].precio_item=6.50;
         break;
     }
     case 105:{
-        ped[num_orden][num_cliente].nombre_item="Yuquitas fritas con Huancaina";
+        ped[num_orden][num_cliente].nombre_item="Yucas fritas c/ Huancaina";
         ped[num_orden][num_cliente].precio_item=7.00;
         break;
     }
@@ -356,7 +357,7 @@ void menuElegir(int opc_orden, int num_orden, int num_cliente, pedido ped[][10])
         break;
     }
     case 210:{
-        ped[num_orden][num_cliente].nombre_item="Tallarin Saltado";
+        ped[num_orden][num_cliente].nombre_item="Tallarín Saltado";
         ped[num_orden][num_cliente].precio_item=18.00;
         break;
     }
@@ -387,33 +388,33 @@ void menuElegir(int opc_orden, int num_orden, int num_cliente, pedido ped[][10])
     }
 	case 0:{
     	if(menu_modo==0) {
-    		///NadaxdxdxdXdXDxdxDxDxd.jpg
+    		///Nada
     	}else {
-    		cout<<" Código invalido..."<<endl;
+    		cout<<" Código inválido..."<<endl;
     		cod_verificador=1;
     	}
     	break;
 	}
     case 1:{
     	if(menu_modo==0) {
-    		///NadaxdxdxdXdXDxdxDxDxd.jpg
+    		///Nada
     	}else {
-    		cout<<" Código invalido..."<<endl;
+    		cout<<" Código inválido..."<<endl;
     		cod_verificador=1;
     	}
 		break;
 	}
 	case 2: {
     	if(menu_modo==0) {
-    		///NadaxdxdxdXdXDxdxDxDxd.jpg
+    		///Nada
     	}else {
-    		cout<<" Código invalido..."<<endl;
+    		cout<<" Código inválido..."<<endl;
     		cod_verificador=1;
     	}
 	   break;
     }
     default:{
-        cout<<" Código invalido..."<<endl;
+        cout<<" Código inválido..."<<endl;
         cod_verificador=1;
         break;
     }
@@ -446,7 +447,7 @@ int main(){
     srand(time(NULL));
     setlocale(LC_ALL, "spanish");
     char opcion;//opcion del menu principal
-	float pago_cliente;// Pago del cliente XD
+	float pago_cliente;// Pago del cliente
 	cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
 	logo();
 	Sleep(2*1000);
@@ -469,7 +470,7 @@ int main(){
                 do{
                     do{
                         cod_verificador=0;
-                        cout<<"\n (0) Terminar Orden \n\n (1) Eliminar un Item\n\n (2) Mostrar Carta \n\n\n Codigo de Item: ";
+                        cout<<"\n (0) Terminar Orden \n\n (1) Eliminar un Item\n\n (2) Mostrar Carta \n\n\n Código de Item: ";
                         fflush(stdin);
                         cin>>opc_orden;
                 	    menuElegir(opc_orden, num_orden, num_cliente, orden);
@@ -483,7 +484,7 @@ int main(){
                     		cin>>cantidad_item;
                     		if(cantidad_item<=0) {
                                 cout<<endl;
-                    			cout<<" "<<cantidad_item<<" , Cantidad Invalida..."<<endl;
+                    			cout<<" "<<cantidad_item<<" , Cantidad inválida..."<<endl;
                     		}
                     	}while(cantidad_item<=0);
                     	orden[num_orden][num_cliente].cantidad_item=cantidad_item;
@@ -497,30 +498,30 @@ int main(){
 						datos_orden[num_cliente].numero_items_datos = num_orden;
                 	}else if(opc_orden==1){
                 		if(datos_orden[num_cliente].numero_items_datos==0){
-                			cout<<"\n\n Orden vacia\n\n Regresando al Menu Principal..."<<endl;
+                			cout<<"\n\n Orden vacía\n\n Regresando al Menu Principal..."<<endl;
                     		opc_orden=0;
                     		Sleep(3*1000);
 						}else{
-							int codigo_eliminar, cont_elim=0 , fine=1;
+							int codigo_eliminar, cont_elim=0 , opc_eliminar=1;
 	                		system("cls");
 	                        version();
 							menuMostrar(num_cliente, num_orden, orden, datos_orden, 7, 0);
 
-	                		cout<<"\n Codigo de Item a Eliminar: ";
+	                		cout<<"\n Código de Item a Eliminar: ";
 	                		cin>>codigo_eliminar;
 
-	                		while(fine!=0 && datos_orden[num_cliente].numero_items_datos!=cont_elim){
+	                		while(opc_eliminar!=0 && datos_orden[num_cliente].numero_items_datos!=cont_elim){
 
 	                			if(orden[cont_elim][num_cliente].codigo_item==codigo_eliminar){
-								cout<<"\n Item de C digo "<<orden[cont_elim][num_cliente].codigo_item<<" Eliminado"<<endl;
+								cout<<"\n Item de Código "<<orden[cont_elim][num_cliente].codigo_item<<" Eliminado"<<endl;
                                 Sleep(2*1000);
-								fine=0;
+								opc_eliminar=0;
 								}
 								cont_elim=cont_elim+1;
 							}
 
-							if(fine!=0){
-								cout<<"\n\n Codigo de Item No Encontrado..." << endl;
+							if(opc_eliminar!=0){
+								cout<<"\n\n Código de Item No Encontrado..." << endl;
 								Sleep(2*1000);
 								system("cls");
 								version();
@@ -542,7 +543,7 @@ int main(){
 						}
                     }else if(opc_orden==0){
                     	if(datos_orden[num_cliente].numero_items_datos==0){
-                    		cout<<"\n\n Orden vacia\n\n Regresando al Menu Principal..."<<endl;
+                    		cout<<"\n\n Orden vacía\n\n Regresando al Menu Principal..."<<endl;
                     		opc_orden=0;
                     		Sleep(2*1000);
 						}else{
@@ -553,7 +554,7 @@ int main(){
 							cout<<"\t\t\t\t\t\tORDEN CREADA"<<endl;
 							menuMostrar(num_cliente, num_orden, orden, datos_orden, 8, 0);
 							datos_orden[num_cliente].codigo_cliente = 1000+rand()% 8999;
-                			cout<<"\n\nCODIGO GENERADO : "<< datos_orden[num_cliente].codigo_cliente<<endl;
+                			cout<<"\n\nCÓDIGO GENERADO : "<< datos_orden[num_cliente].codigo_cliente<<endl;
 							num_cliente=num_cliente+1;
                             cout<<endl;
 							system("pause");
@@ -566,7 +567,7 @@ int main(){
 						system("cls");
 						version();
 						if(datos_orden[num_cliente].numero_items_datos==0) {
-							//Nada2.0xdxdXDdXdx:VVVVV
+							//Nada
 						}else {
 							menuMostrar(num_cliente, num_orden, orden, datos_orden, 7, 0);
 						}
@@ -584,7 +585,7 @@ int main(){
             	menu_modo=1;
                 version();
                 cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
-                cout<<"\t\t\t\t    |       CODIGO       |      CLIENTE     |"<<endl;
+                cout<<"\t\t\t\t    |       CÓDIGO       |      CLIENTE     |"<<endl;
                 cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
                 for(int i=0 ; i<num_cliente; i++){
                     gotoxy(36, i+7);cout<<"|        "<<datos_orden[i].codigo_cliente;
@@ -592,9 +593,9 @@ int main(){
                     gotoxy(76, i+7);cout<<"| ";
                 }
                 cout<<endl<<"\t\t\t\t    +--------------------+------------------+"<<endl;
-                cout<<endl<<" Codigo de Orden: ";
-                cin >> codice;
-                for(int i=0 ; i<num_cliente; i++){
+                cout<<endl<<" Código de Orden: ";
+                cin>>codice;
+                for(int i=0 ;i<num_cliente; i++){
                     if(codice==datos_orden[i].codigo_cliente){
                         bscr=i;
                         opc_buscar = 1;
@@ -605,7 +606,7 @@ int main(){
                     	system("cls");
 	                    version();
                     	menuMostrar(bscr, datos_orden[bscr].numero_items_datos, orden, datos_orden, 7, 0);
-						cout<<"\n\n (0) Volver al Menu \n\n (1) Agregar Item \n\n (2) Mostrar la Carta \n\n (3) Eliminar Item \n\n\n Ingrese Opcion : ";
+						cout<<"\n\n (0) Volver al Menú \n\n (1) Agregar Item \n\n (2) Mostrar la Carta \n\n (3) Eliminar Item \n\n\n Ingrese Opcion : ";
         				fflush(stdin);
         				cin>>opcm;
 
@@ -615,7 +616,7 @@ int main(){
                     			int agregarm=datos_orden[bscr].numero_items_datos;
                                 do {
                                     cod_verificador=0;
-                                    cout<<"\n Codigo de Item : ";
+                                    cout<<"\n Código de Item : ";
                                     fflush(stdin);
                                     cin >> agregar_orden;
                                     menuElegir(agregar_orden, agregarm, bscr, orden);
@@ -629,7 +630,7 @@ int main(){
                     				fflush(stdin);
                     				cin>>cantidad_item;
                     				if(cantidad_item<=0) {
-                    					cout<<" Cantidad Inv lida..."<<endl;
+                    					cout<<" Cantidad Inválida..."<<endl;
                     				}
                     			}while(cantidad_item<=0);
                     			orden[agregarm][bscr].cantidad_item=cantidad_item;
@@ -656,20 +657,20 @@ int main(){
                     			int eliminarm;
 								int sacar_id=0;
 
-								cout<<"\n Codigo de Item a Eliminar: ";
+								cout<<"\n Código de Item a Eliminar: ";
 								fflush(stdin);
 								cin>>eliminarm ;
 								int opc_el=1;
 								while(opc_el!=0 && datos_orden[bscr].numero_items_datos!=sacar_id){
 	                				if(orden[sacar_id][bscr].codigo_item==eliminarm){
-										cout<<"\n Item de C digo "<<orden[sacar_id][bscr].codigo_item<<" Eliminado"<<endl<<endl;
+										cout<<"\n Item de Código "<<orden[sacar_id][bscr].codigo_item<<" Eliminado"<<endl<<endl;
 										opc_el=0;
 										system("pause");
 									}
 									sacar_id=sacar_id+1;
 								}
 								if(opc_el!=0){
-									cout<<"\n Codigo de Item no Encontrado" << endl;
+									cout<<"\n Código de Item no Encontrado" << endl;
 									Sleep(2*1000);
 								}else{
 									sacar_id=sacar_id-1;
@@ -704,7 +705,7 @@ int main(){
                 }else if(opc_buscar==0) {
                     system("cls");
                     version();
-                    cout<<"\n\n Codigo no Existente\n\n Regresando al Menu Principal..."<<endl;
+                    cout<<"\n\n Código no Existente\n\n Regresando al Menu Principal..."<<endl;
                     Sleep(2*1000);
                 }
             	break;
@@ -716,7 +717,7 @@ int main(){
                 system("cls");
                 version();
                 cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
-                cout<<"\t\t\t\t    |       CODIGO       |      CLIENTE     |"<<endl;
+                cout<<"\t\t\t\t    |       CÓDIGO       |      CLIENTE     |"<<endl;
                 cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
                 for(int i=0 ; i<num_cliente; i++){
                     gotoxy(36, i+7);cout<<"|        "<<datos_orden[i].codigo_cliente;
@@ -724,8 +725,8 @@ int main(){
                     gotoxy(76, i+7);cout<<"| ";
                 }
                 cout<<endl<<"\t\t\t\t    +--------------------+------------------+"<<endl;
-                cout<<endl<<" Codigo de Orden: ";
-                cin >> codice;
+                cout<<endl<<" Código de Orden: ";
+                cin>>codice;
                 for(int i=0 ; i<num_cliente; i++){
                     if(codice==datos_orden[i].codigo_cliente){
                         bscr=i;
@@ -736,10 +737,10 @@ int main(){
                 if(opc_buscar==1){
                     system("cls");
                     version();
-                    cout<<"\t\t\t\t\t    CODIGO DE CLIENTE ENCONTRADO"<<endl;
+                    cout<<"\t\t\t\t\t    CÓDIGO DE CLIENTE ENCONTRADO"<<endl;
                 	cout<<"\t\t   ---------------------------------------------------------------------------"<<endl;
                     cout<<"\t\t    Cliente: "<< datos_orden[bscr].nombre_cliente << endl;
-                    cout<<"\t\t    Codigo: "<< datos_orden[bscr].codigo_cliente<<endl;
+                    cout<<"\t\t    Código: "<< datos_orden[bscr].codigo_cliente<<endl;
                     cout<<"\t\t    Numero de Ordenes: "<<datos_orden[bscr].numero_items_datos<<endl;
                     menuMostrar(bscr, datos_orden[bscr].numero_items_datos, orden, datos_orden, 12, 0);
                     cout<<endl;
@@ -790,18 +791,18 @@ int main(){
                 }else if(opc_buscar==0){
                     system("cls");
                     version();
-                    cout<<"\n\n Codigo no Existente\n\n Regresando al Menu Principal..."<<endl;
+                    cout<<"\n\n Código no Existente\n\n Regresando al Menú Principal..."<<endl;
                     Sleep(2*1000);
                 }
                 break;
             }//FIN CASE 3
             case '4':{
                 int codice=0;//codigo registrado
-                int bscr , opc_buscar=0;
+                int bscr, opc_buscar=0;
                 system("cls");
                 version();
                 cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
-                cout<<"\t\t\t\t    |       CODIGO       |      CLIENTE     |"<<endl;
+                cout<<"\t\t\t\t    |       CÓDIGO       |      CLIENTE     |"<<endl;
                 cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
                 for(int i=0 ; i<num_cliente; i++){
                     gotoxy(36, i+7);cout<<"|        "<<datos_orden[i].codigo_cliente;
@@ -809,7 +810,7 @@ int main(){
                     gotoxy(76, i+7);cout<<"| ";
                 }
                 cout<<endl<<"\t\t\t\t    +--------------------+------------------+"<<endl;
-                cout<<endl<<" Codigo de Orden: ";
+                cout<<endl<<" Código de Orden: ";
                 cin >> codice;
                 for(int i=0 ; i<num_cliente; i++){
                     if(codice==datos_orden[i].codigo_cliente){
@@ -817,9 +818,10 @@ int main(){
                         opc_buscar=1;
                     }
                 }
-                cout<<"\n Total a Pagar: S/"<<datos_orden[bscr].costo_total_items;
+
                 if(opc_buscar==1){
 	                do {
+	                	cout<<"\n Total a Pagar: S/"<<datos_orden[bscr].costo_total_items;
 						cout<<"\n\n Pago: S/"; cin>>pago_cliente;
 						if(datos_orden[bscr].costo_total_items>pago_cliente) {
 							cout<<"\n Pago Insuficiente"<<endl;
@@ -859,6 +861,43 @@ int main(){
 	                version();
 	                cout<<"\n\nRegresando al Menu Principal..."<<endl;
 	                Sleep(2*1000);
+
+                	ofstream boletaGenerada;
+					string boleta_nombre="BOLETA_"+to_string(datos_orden[bscr].codigo_cliente)+".txt";
+					boletaGenerada.open(boleta_nombre, ios ::app);//Abro el archivo
+						if (boletaGenerada.is_open()) {
+							boletaGenerada<<"\t\t                           MACCHIAVELLO'S RESTAURANT S.L."<<endl;
+							boletaGenerada<<"\t\t                           RUC No.: 17732301232"<<endl;
+							boletaGenerada<<"\t\t                           Chorrillos - Lima"<<endl;
+							boletaGenerada<<"\t\t                           Telef: 123-4567"<<endl;
+							boletaGenerada<<"\t\t                           info@macchiavellosresutaurant.com"<<endl;
+							boletaGenerada<<"                           -----------------------------------------------------------------"<<endl;
+							boletaGenerada<<"                           CLIENTE: "<<datos_orden[bscr].nombre_cliente<<endl;
+							boletaGenerada<<"                           BOLETA N°: "<<datos_orden[bscr].codigo_cliente<<endl;
+							boletaGenerada<<"                           -----------------------------------------------------------------"<<endl;
+							boletaGenerada<<"                            UDS   DESCRIPCION                          PREC/UDS     COSTO"<<endl;
+							boletaGenerada<<"                           -----------------------------------------------------------------"<<endl;
+
+							for(int i=0; i<datos_orden[bscr].numero_items_datos; i++){
+							    boletaGenerada<< "                            x"<<orden[i][bscr].cantidad_item
+								               <<"  "<<orden[i][bscr].nombre_item
+							                   <<"\t\t\tS/."<<orden[i][bscr].precio_item
+								               <<"\tS/."<<orden[i][bscr].precio_item * orden[i][bscr].cantidad_item<<"\n";
+				        }
+
+				        boletaGenerada<<"                           -----------------------------------------------------------------" << endl;
+				        boletaGenerada<<"                                                                      OP. GRAVADA: S/."<<datos_orden[bscr].costo_total_items*0.82<<endl;
+				        boletaGenerada<<"                                                                        IGV (18%): S/."<<datos_orden[bscr].costo_total_items*0.18<<endl;
+				        boletaGenerada<<"                                                                    TOTAL A PAGAR: S/."<<datos_orden[bscr].costo_total_items<<endl;
+				        boletaGenerada<<"                                                                             PAGO: S/."<<pago_cliente<<endl;
+				        boletaGenerada<<"                                                                           VUELTO: S/."<<pago_cliente-datos_orden[bscr].costo_total_items<<endl;
+				    boletaGenerada.close();//Cierro el archivo para que no se crashee xd
+				    cout << "\nBoleta Guardada en el Archivo: " << boleta_nombre << endl;
+					Sleep(2*1000);
+				} else {
+				    cout << "\nNo se Pudo Crear el Archivo Para Guardar la Boleta..." << endl;
+					Sleep(2*1000);
+				}
 				}else{
 					system("cls");
                     version();
