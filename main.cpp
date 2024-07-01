@@ -456,7 +456,7 @@ int main(){
 						datos_orden[num_cliente].numero_items_datos = num_orden;
                 	}else if(opc_orden==1){
                 		if(datos_orden[num_cliente].numero_items_datos==0){
-                			cout<<"\n\n Orden vacia\n Regresando al Menu Principal..."<<endl;
+                			cout<<"\n\n Orden vacia\n\n Regresando al Menu Principal..."<<endl;
                     		opc_orden=0;
                     		Sleep(3*1000);
 						}else{
@@ -501,7 +501,7 @@ int main(){
 						}
                     }else if(opc_orden==0){
                     	if(datos_orden[num_cliente].numero_items_datos==0){
-                    		cout<<"\n\n Orden vacia\n Regresando al Menu Principal..."<<endl;
+                    		cout<<"\n\n Orden vacia\n\n Regresando al Menu Principal..."<<endl;
                     		opc_orden=0;
                     		Sleep(2*1000);
 						}else{
@@ -621,14 +621,14 @@ int main(){
 								int opc_el=1;
 								while(opc_el!=0 && datos_orden[bscr].numero_items_datos!=sacar_id){
 	                				if(orden[sacar_id][bscr].codigo_item==eliminarm){
-										cout<<"\n\t\t Item de Código "<<orden[sacar_id][bscr].codigo_item<<" Eliminado"<<endl;
+										cout<<"\n Item de Código "<<orden[sacar_id][bscr].codigo_item<<" Eliminado"<<endl<<endl;
 										opc_el=0;
 										system("pause");
 									}
 									sacar_id=sacar_id+1;
 								}
 								if(opc_el!=0){
-									cout<<"\nCodigo de Item no Encontrado" << endl;
+									cout<<"\n Codigo de Item no Encontrado" << endl;
 									Sleep(2*1000);
 								}else{
 									sacar_id=sacar_id-1;
@@ -663,7 +663,7 @@ int main(){
                 }else if(opc_buscar==0) {
                     system("cls");
                     version();
-                    cout<<"\n\n Codigo no Existente\n Regresando al Menu Principal..."<<endl;
+                    cout<<"\n\n Codigo no Existente\n\n Regresando al Menu Principal..."<<endl;
                     Sleep(2*1000);
                 }
             	break;
@@ -674,17 +674,16 @@ int main(){
                 int opc_buscar=0;//opcion de continuar o seguir al momento de recibir la boleta
                 system("cls");
                 version();
-                cout<<"     CODIGO GENERADOS"<<endl;
-                cout<<"|--------------------|------------------|"<<endl;
-                cout<<"| CODIGO DEL CLIENTE | NOMBRE CLIENTE   |"<<endl;
-                cout<<"|--------------------|------------------|"<<endl;
+                cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
+                cout<<"\t\t\t\t    |       CODIGO       |      CLIENTE     |"<<endl;
+                cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
                 for(int i=0 ; i<num_cliente; i++){
-                    gotoxy(0, i+8);cout<<"| "<<datos_orden[i].codigo_cliente;
-                    gotoxy(21, i+8);cout<<"| "<<datos_orden[i].nombre_cliente<<endl;
-                    gotoxy(40, i+8);cout<<"| ";
+                    gotoxy(36, i+7);cout<<"|        "<<datos_orden[i].codigo_cliente;
+                    gotoxy(57, i+7);cout<<"|       "<<datos_orden[i].nombre_cliente<<endl;
+                    gotoxy(76, i+7);cout<<"| ";
                 }
-                cout<<endl<<"|--------------------|------------------|"<<endl;
-                cout<<endl<<"Ingrese el codigo de orden que desea mostrar: ";
+                cout<<endl<<"\t\t\t\t    +--------------------+------------------+"<<endl;
+                cout<<endl<<" Codigo de Orden: ";
                 cin >> codice;
                 for(int i=0 ; i<num_cliente; i++){
                     if(codice==datos_orden[i].codigo_cliente){
@@ -748,7 +747,7 @@ int main(){
                 }else if(opc_buscar==0){
                     system("cls");
                     version();
-                    cout<<"\n\nCODIGO INGRESADO NO EXISTENTE... REGRESANDO AL MENU"<<endl;
+                    cout<<"\n\n Codigo no Existente\n\n Regresando al Menu Principal"<<endl;
                     Sleep(2*1000);
                 }
                 break;
