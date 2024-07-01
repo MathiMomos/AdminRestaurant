@@ -229,12 +229,13 @@ void menuCarta(){
         id=i+300;
         c[i].nos=nombreplato;
         c[i].pr=precio;
-        gotoxy(33, i+24);cout<<id;
+        gotoxy(33, i+25);cout<<id;
         cout<<"   "<<c[i].nos;
-        gotoxy(73, i+24);cout<<"S/."<<c[i].pr<<endl;
+        gotoxy(73, i+25);cout<<"S/."<<c[i].pr<<endl;
     }
     cout<<"                              -----------------------------------------------------"<<endl<<endl;
 }//menu de las carta de los platos
+
 struct pedido{
     int codigo_item;//ID del plato
     int cantidad_item;// cantidad que deseas de ese pedido
@@ -776,9 +777,10 @@ int main(){
                         opc_buscar=1;
                     }
                 }
+                cout<<"\n Total a Pagar: S/"<<datos_orden[bscr].costo_total_items;
                 if(opc_buscar==1){
 	                do {
-						cout<<"\n Pago: "; cin>>pago_cliente;
+						cout<<"\n\n Pago: S/"; cin>>pago_cliente;
 						if(datos_orden[bscr].costo_total_items>pago_cliente) {
 							cout<<"\n Pago Insuficiente"<<endl;
 						}
