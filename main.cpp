@@ -90,7 +90,7 @@ void menuCarta(){
     int id;
     string nombreplato;
     float precio;
-    SetConsoleTextAttribute(hConsole, 117); // 117=morado 124=rosado 125=magenta
+    SetConsoleTextAttribute(hConsole, 125); // 117=morado 124=rosado 125=magenta
     //cout<<"                              +---------------------------------------------------+"<<endl;
     cout<<"                              |                 => Menu de platos <=              |"<<endl;
     cout<<"                              +---------------------------------------------------+"<<endl;
