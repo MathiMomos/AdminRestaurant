@@ -16,7 +16,7 @@ void gotoxy(short x, short y) {
     SetConsoleCursorPosition(hConsole, pos);
 }
 
-void dibujarrecuadro(int x, int y, int ancho, int alto) {
+void dibujarRecuadro(int x, int y, int ancho, int alto) {
     // Borde superior
     gotoxy(x, y);
     cout << "+" << string(ancho - 2, '-') << "+";
@@ -52,14 +52,14 @@ void menu() {
         } else {
             SetConsoleTextAttribute(hConsole, 112); //112: texto negro, fondo gris claro
         }
-        dibujarrecuadro(45, 4 + i * 3, 30, 3);
+        dibujarRecuadro(45, 4 + i * 3, 30, 3);
         gotoxy(45 + (30 - opciones[i].length()) / 2, 4 + i * 3 + 1);
         cout << opciones[i];
     }
     SetConsoleTextAttribute(hConsole, 112);
 
     // Recuadro para "Ingrese Opcion"
-    dibujarrecuadro(48, 24, 24, 3);
+    dibujarRecuadro(48, 24, 24, 3);
     gotoxy(50, 25);
     cout << "  Ingrese Opcion: ";
 
