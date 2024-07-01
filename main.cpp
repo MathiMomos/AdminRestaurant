@@ -1,29 +1,69 @@
-#include<stdio.h>
-#include<conio.h>
-#include<iostream>
-#include<windows.h>
-#include<time.h>
-#include<string>
+#include <stdio.h>
+#include <conio.h>
+#include <iostream>
+#include <windows.h>
+#include <time.h>
+#include <string>
 #include <clocale>
-#include <iomanip>
 
 using namespace std;
 
-void gotoxy(short x,short y){
-    HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD pos ={x, y};
-    SetConsoleCursorPosition(hStdout,pos);
-}//posicion del programa
-void menu(){
-    cout<<"1. CREAR ORDEN"<<endl;
-    cout<<"2. MODIFICAR ORDEN"<<endl;
-    cout<<"3. BUSCAR ORDEN"<<endl;
-    cout<<"4. GENERAR BOLETA"<<endl;
-    cout<<"5. ELIMINAR ORDEN"<<endl<<endl;
-    cout<<"0. SALIR DEL SISTEMA"<<endl<<endl;
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-    cout<<"Ingrese Opcion: ";
+void gotoxy(short x, short y) {
+    COORD pos = {x, y};
+    SetConsoleCursorPosition(hConsole, pos);
+}
+
+void dibujarrecuadro(int x, int y, int ancho, int alto) {
+    // Borde superior
+    gotoxy(x, y);
+    cout << "+" << string(ancho - 2, '-') << "+";
+
+    // Lados y espacio interior
+    for (int i = 1; i < alto - 1; ++i) {
+        gotoxy(x, y + i);
+        cout << "|" << string(ancho - 2, ' ') << "|";
+    }
+
+    // Borde inferior
+    gotoxy(x, y + alto - 1);
+    cout << "+" << string(ancho - 2, '-') << "+";
+}
+
+void menu() {
+    system("cls");
+    cout<<"\n                                               MACCHIAVELLO'S RESTAURANT";
+    cout<<"\n                                                     MENU PRINCIPAL";
+
+    string opciones[] = {
+            "1. CREAR ORDEN",
+            "2. MODIFICAR ORDEN",
+            "3. BUSCAR ORDEN",
+            "4. GENERAR BOLETA",
+            "5. ELIMINAR ORDEN",
+            "0. SALIR DEL SISTEMA"
+    };
+
+    for (int i = 0; i < 6; i++) {
+        if (i == 5) { // Colorear la opcion 5
+            SetConsoleTextAttribute(hConsole, 116);  //116: texto rojo, fondo gris claro
+        } else {
+            SetConsoleTextAttribute(hConsole, 112); //112: texto negro, fondo gris claro
+        }
+        dibujarrecuadro(45, 4 + i * 3, 30, 3);
+        gotoxy(45 + (30 - opciones[i].length()) / 2, 4 + i * 3 + 1);
+        cout << opciones[i];
+    }
+    SetConsoleTextAttribute(hConsole, 112);
+
+    // Recuadro para "Ingrese Opcion"
+    dibujarrecuadro(48, 24, 24, 3);
+    gotoxy(50, 25);
+    cout << "  Ingrese Opcion: ";
+
 }//menu principal
+
 void version(){
     cout<<"Versión "<<1<<"."<<7<<"."<<2<<" - Solo para desarrolladores - ¡No distribuir!"<<endl;
     cout<<"\n\t\t            ADMINISTRADOR DE RESTAURANTES - MACCHIAVELLO'S RESTAURANT"<<endl<<endl;
@@ -323,7 +363,7 @@ void menuElegir(int opc_orden, int num_orden, int num_cliente, pedido ped[][10])
     	if(menu_modo==0) {
     		///NadaxdxdxdXdXDxdxDxDxd.jpg
     	}else {
-    		cout<<"Código invalido..."<<endl;
+    		cout<<" Código invalido..."<<endl;
     		cod_verificador=1;
     	}
     	break;
@@ -335,7 +375,7 @@ void menuElegir(int opc_orden, int num_orden, int num_cliente, pedido ped[][10])
 	   break;
     }
     default:{
-        cout<<"Código invalido..."<<endl;
+        cout<<" Código invalido..."<<endl;
         cod_verificador=1;
         break;
     }
@@ -344,27 +384,26 @@ void menuElegir(int opc_orden, int num_orden, int num_cliente, pedido ped[][10])
 
 void menuMostrar(int num_cliente, int num_orden, pedido orden[][10], datos_cliente datos_orden[], int gotoy, int indexmax) {
 	datos_orden[num_cliente].costo_total_items=0;
-	cout<<"---------------------------------------------------------------------------"<<endl;
-	cout<<"ID  	NOMB. ITEM                      PRECIO	   CANTIDAD     COSTO"<<endl;
-	cout<<"---------------------------------------------------------------------------"<<endl;
+	cout<<"                   ---------------------------------------------------------------------------"<<endl;
+	cout<<"                     ID  	NOMB. ITEM                      PRECIO	   CANTIDAD     COSTO"<<endl;
+	cout<<"                   ---------------------------------------------------------------------------"<<endl;
 	for(int i=0; i<num_orden+indexmax; i++){
 		int j=i;//posible cambio para poner el menu de la carta
 		datos_orden[num_cliente].costo_total_items += orden[i][num_cliente].precio_item * orden[i][num_cliente].cantidad_item;
-		gotoxy(0, j+gotoy);cout<<orden[i][num_cliente].codigo_item;
+		gotoxy(21, j+gotoy);cout<<orden[i][num_cliente].codigo_item;
 		cout<<"  \t"<<orden[i][num_cliente].nombre_item;
-		gotoxy(40, j+gotoy);cout<<"S/."<<orden[i][num_cliente].precio_item;
-		gotoxy(50, j+gotoy);cout<<" x"<<orden[i][num_cliente].cantidad_item;
-		gotoxy(60, j+gotoy);cout<<"\tS/."<<orden[i][num_cliente].precio_item * orden[i][num_cliente].cantidad_item<<"\n";
+		gotoxy(65, j+gotoy);cout<<"S/."<<orden[i][num_cliente].precio_item;
+		gotoxy(77, j+gotoy);cout<<" x"<<orden[i][num_cliente].cantidad_item;
+		gotoxy(84, j+gotoy);cout<<"\tS/."<<orden[i][num_cliente].precio_item * orden[i][num_cliente].cantidad_item<<"\n";
 	}
-	cout<<"---------------------------------------------------------------------------"<<endl;
-	cout<<"                                                      COSTO TOTAL: "<<datos_orden[num_cliente].costo_total_items<<endl;
+	cout<<"                   ---------------------------------------------------------------------------"<<endl;
+	cout<<"                                                                                 TOTAL: S/."<<datos_orden[num_cliente].costo_total_items<<endl;
 }// Muestra la orden que se esta creando, siendo modificada o terminada
 
 int main(){
 
     srand(time(NULL));
     setlocale(LC_ALL, "spanish");
-
     char opcion;//opcion del menu principal
 	float pago_cliente;// Pago del cliente XD
 	cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
@@ -383,7 +422,7 @@ int main(){
             	num_orden=0;
             	menu_modo=0;
                 version();
-                cout<<"Ingrese el nombre del cliente : ";
+                cout<<" Nombre del Cliente: ";
                 cin>>datos_orden[num_cliente].nombre_cliente;
 
                 do{
@@ -399,10 +438,11 @@ int main(){
                         orden[num_orden][num_cliente].codigo_item=opc_orden;
 
                     	do {
-                    		cout<<"\nInserte cantidad del item a añadir: ";
+                    		cout<<"\n Cantidad: ";
                     		cin>>cantidad_item;
                     		if(cantidad_item<=0) {
-                    			cout<<cantidad_item<<" no es una cantidad válida..."<<endl;
+                                cout<<endl;
+                    			cout<<" "<<cantidad_item<<" , Cantidad Invalida..."<<endl;
                     		}
                     	}while(cantidad_item<=0);
                     	orden[num_orden][num_cliente].cantidad_item=cantidad_item;
@@ -416,29 +456,30 @@ int main(){
 						datos_orden[num_cliente].numero_items_datos = num_orden;
                 	}else if(opc_orden==1){
                 		if(datos_orden[num_cliente].numero_items_datos==0){
-                			cout<<"\n\nLa orden esta vacía, no puedes eliminar nada, cancelando orden..."<<endl;
+                			cout<<"\n\n Orden vacia\n Regresando al Menu Principal..."<<endl;
                     		opc_orden=0;
-                    		Sleep(2*1000);
+                    		Sleep(3*1000);
 						}else{
 							int codigo_eliminar, cont_elim=0 , fine=1;
 	                		system("cls");
 	                        version();
 							menuMostrar(num_cliente, num_orden, orden, datos_orden, 7, 0);
 
-	                		cout<<"\nIngrese el código del item que desea eliminar de la orden: ";
+	                		cout<<"\n Codigo de Item a Eliminar: ";
 	                		cin>>codigo_eliminar;
 
 	                		while(fine!=0 && datos_orden[num_cliente].numero_items_datos!=cont_elim){
 
 	                			if(orden[cont_elim][num_cliente].codigo_item==codigo_eliminar){
-								cout<<"\n Item de código "<<orden[cont_elim][num_cliente].codigo_item<<" eliminado"<<endl;
+								cout<<"\n Item de Código "<<orden[cont_elim][num_cliente].codigo_item<<" Eliminado"<<endl;
+                                Sleep(2*1000);
 								fine=0;
 								}
 								cont_elim=cont_elim+1;
 							}
 
 							if(fine!=0){
-								cout<<"\n\nEl codigo del item no ha sido encontrado..." << endl;
+								cout<<"\n\n Codigo de Item No Encontrado..." << endl;
 								Sleep(2*1000);
 								system("cls");
 								version();
@@ -460,7 +501,7 @@ int main(){
 						}
                     }else if(opc_orden==0){
                     	if(datos_orden[num_cliente].numero_items_datos==0){
-                    		cout<<"\n\nLa orden esta vacia, no puedes terminarla, cancelando orden..."<<endl;
+                    		cout<<"\n\n Orden vacia\n Regresando al Menu Principal..."<<endl;
                     		opc_orden=0;
                     		Sleep(2*1000);
 						}else{
@@ -468,11 +509,12 @@ int main(){
 	                        datos_orden[num_cliente].costo_total_items=0;
 
 	                        version();
-							cout<<"\t\t\t\tORDEN CREADA"<<endl;
+							cout<<"\t\t\t\t\t\tORDEN CREADA"<<endl;
 							menuMostrar(num_cliente, num_orden, orden, datos_orden, 8, 0);
 							datos_orden[num_cliente].codigo_cliente = 1000+rand()% 8999;
                 			cout<<"\n\nCODIGO GENERADO : "<< datos_orden[num_cliente].codigo_cliente<<endl;
 							num_cliente=num_cliente+1;
+                            cout<<endl;
 							system("pause");
 						}
 					}else if(opc_orden==2){
@@ -500,17 +542,16 @@ int main(){
                 system("cls");
             	menu_modo=1;
                 version();
-                cout<<"     CODIGO GENERADOS"<<endl;
-                cout<<"|--------------------|------------------|"<<endl;
-                cout<<"| CODIGO DEL CLIENTE | NOMBRE CLIENTE   |"<<endl;
-                cout<<"|--------------------|------------------|"<<endl;
+                cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
+                cout<<"\t\t\t\t    |       CODIGO       |      CLIENTE     |"<<endl;
+                cout<<"\t\t\t\t    +--------------------+------------------+"<<endl;
                 for(int i=0 ; i<num_cliente; i++){
-                    gotoxy(0, i+8);cout<<"| "<<datos_orden[i].codigo_cliente;
-                    gotoxy(21, i+8);cout<<"| "<<datos_orden[i].nombre_cliente<<endl;
-                    gotoxy(40, i+8);cout<<"| ";
+                    gotoxy(36, i+7);cout<<"|        "<<datos_orden[i].codigo_cliente;
+                    gotoxy(57, i+7);cout<<"|       "<<datos_orden[i].nombre_cliente<<endl;
+                    gotoxy(76, i+7);cout<<"| ";
                 }
-                cout<<endl<<"|--------------------|------------------|"<<endl;
-                cout<<endl<<"Ingrese el codigo de orden que desea modificar: ";
+                cout<<endl<<"\t\t\t\t    +--------------------+------------------+"<<endl;
+                cout<<endl<<" Codigo de Orden: ";
                 cin >> codice;
                 for(int i=0 ; i<num_cliente; i++){
                     if(codice==datos_orden[i].codigo_cliente){
@@ -523,7 +564,7 @@ int main(){
                     	system("cls");
 	                    version();
                     	menuMostrar(bscr, datos_orden[bscr].numero_items_datos, orden, datos_orden, 7, 0);
-						cout<<"\n(0) para terminar la  modificacion de la orden \n(1) para agregar un item \n(2) para mostrar la carta \n(3) para elimar un item \n \n Inserte la opcion : ";
+						cout<<"\n\n (0) Volver al Menu \n\n (1) Agregar Item \n\n (2) Mostrar la Carta \n\n (3) Eliminar Item \n\n\n Ingrese Opcion : ";
         				fflush(stdin);
         				cin>>opcm;
 
@@ -533,7 +574,7 @@ int main(){
                     			int agregarm=datos_orden[bscr].numero_items_datos;
                                 do {
                                     cod_verificador=0;
-                                    cout<<"\n Inserte codigo de item : ";
+                                    cout<<"\n Codigo de Item : ";
                                     fflush(stdin);
                                     cin >> agregar_orden;
                                     menuElegir(agregar_orden, agregarm, bscr, orden);
@@ -543,11 +584,11 @@ int main(){
 			                    orden[agregarm][bscr].codigo_item=agregar_orden;
 
                     			do {
-                    				cout<<"\nInserte cantidad del item: ";
+                    				cout<<"\n Cantidad: ";
                     				fflush(stdin);
                     				cin>>cantidad_item;
                     				if(cantidad_item<=0) {
-                    					cout<<"Número inválido..."<<endl;
+                    					cout<<" Cantidad Inválida..."<<endl;
                     				}
                     			}while(cantidad_item<=0);
                     			orden[agregarm][bscr].cantidad_item=cantidad_item;
@@ -556,7 +597,7 @@ int main(){
 			                    system("cls");
 			                    fflush(stdin);
 			                    version();
-		                        cout<<"\t\t\t\tORDEN MODIFICADA"<<endl;
+		                        cout<<"\t\t\t\t\t\tORDEN MODIFICADA"<<endl;
                     			menuMostrar(bscr, datos_orden[bscr].numero_items_datos, orden, datos_orden, 8, 1);
 			                    datos_orden[bscr].numero_items_datos=1+agregarm;
 			                    system ("pause");
@@ -574,20 +615,20 @@ int main(){
                     			int eliminarm;
 								int sacar_id=0;
 
-								cout<<"\nInserte el codigo del item que desea eliminar: ";
+								cout<<"\n Codigo de Item a Eliminar: ";
 								fflush(stdin);
 								cin>>eliminarm ;
 								int opc_el=1;
 								while(opc_el!=0 && datos_orden[bscr].numero_items_datos!=sacar_id){
 	                				if(orden[sacar_id][bscr].codigo_item==eliminarm){
-										cout<<"\n\t\tItem de código "<<orden[sacar_id][bscr].codigo_item<<" eliminado"<<endl;
+										cout<<"\n\t\t Item de Código "<<orden[sacar_id][bscr].codigo_item<<" Eliminado"<<endl;
 										opc_el=0;
 										system("pause");
 									}
 									sacar_id=sacar_id+1;
 								}
 								if(opc_el!=0){
-									cout<<"\nNo se ha encontrado el codigo que inserto......" << endl;
+									cout<<"\nCodigo de Item no Encontrado" << endl;
 									Sleep(2*1000);
 								}else{
 									sacar_id=sacar_id-1;
@@ -602,7 +643,7 @@ int main(){
 									fflush(stdin);
 									version();
 									datos_orden[bscr].costo_total_items=0;
-									cout<<"\t\t\t\t   ORDEN MODIFICADA"<<endl;
+                                    cout<<"\t\t\t\t\t\tORDEN MODIFICADA"<<endl;
 									menuMostrar(bscr, datos_orden[bscr].numero_items_datos, orden, datos_orden, 8, 0);
 			                       system("pause");
 								}
@@ -611,7 +652,7 @@ int main(){
 							case 0:{
 								system("cls");
                 				version();
-                				cout<<"\n\n.....CERRANDO MODIFICAR ORDEN";
+                				cout<<"\n\n Regresando...";
                 				Sleep(2*1000);
 
 								break;
@@ -622,7 +663,7 @@ int main(){
                 }else if(opc_buscar==0) {
                     system("cls");
                     version();
-                    cout<<"\n\nCODIGO INGRESADO NO EXISTENTE... REGRESANDO AL MENU"<<endl;
+                    cout<<"\n\n Codigo no Existente\n Regresando al Menu Principal..."<<endl;
                     Sleep(2*1000);
                 }
             	break;
